@@ -13,7 +13,7 @@ import HelloWorld from "./components/HelloWorld.vue";
       height="125"
     />
 
-    <div class="wrapper">
+    <div class="wrapper bg-slate-400 ">
       <HelloWorld msg="You did it!" />
 
       <nav>
