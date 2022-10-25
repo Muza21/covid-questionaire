@@ -1,11 +1,12 @@
 import { createApp } from "vue";
-import App from "./App.vue";
-import router from "./router";
+// import Landing from "@/components/personalInformation.vue";
+// import Landing from "@/components/covidQuestions.vue";
+// import Landing from "@/components/vaccinationPage.vue";
+import Landing from "@/components/advisePage.vue";
 
-import "./assets/main.css";
+// import App from "@/App.vue";
+import "@/style.css";
 
-const app = createApp(App);
-
-app.use(router);
-
-app.mount("#app");
+// const app = createApp(App);
+const landing = createApp(Landing);
+landing.mount("#app");
