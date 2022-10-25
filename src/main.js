@@ -1,5 +1,9 @@
 import { createApp } from "vue";
+// import Landing from "@/components/personalInformation.vue";
+// import Landing from "@/components/covidQuestions.vue";
+// import Landing from "@/components/vaccinationPage.vue";
 import Landing from "@/components/advisePage.vue";
+
 // import App from "@/App.vue";
 import "@/style.css";
 
