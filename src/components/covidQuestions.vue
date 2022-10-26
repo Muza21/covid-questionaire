@@ -1,14 +1,5 @@
 <template>
-  <div
-    class="flex justify-between text-red-500 font-extrabold w-full text-3xl border-b-2 border-gray-800"
-  >
-    <div class="flex my-4">
-      <h1 class="text-3xl">REDBERRY</h1>
-      <img class="-mt-3" src="src/assets/logoR.svg" alt="logo" />
-    </div>
-
-    <div class="text-gray-800 my-4">2/4</div>
-  </div>
+  <navigation-bar></navigation-bar>
 
   <div class="text-xl flex justify-between">
     <div class="mt-8">
@@ -55,7 +46,7 @@
               </div>
             </div>
           </div>
-          <!-- if yes this -->
+
           <div v-if="testDone === 'yes'" class="mt-5">
             <label class="font-bold">
               თუ გახსოვს, გთხოვ მიუთითე ტესტის მიახლოებითი რიცხვი და
@@ -66,6 +57,7 @@
                 type="text"
                 class="border-2 border-gray-800 py-3 px-4 w-[500px] bg-gray-200"
                 placeholder="რიცხვი"
+                v-model="testDate"
               />
             </div>
             <div class="ml-5 mt-5">
@@ -73,10 +65,11 @@
                 type="text"
                 class="border-2 border-gray-800 py-3 px-4 w-[500px] bg-gray-200"
                 placeholder="ანტისხეულების რაოდენობა"
+                v-model="covidAntigen"
               />
             </div>
           </div>
-          <!-- if not anti than -->
+
           <div v-else-if="testDone === 'no'" class="mt-5">
             <label class="font-bold">
               მიუთითე მიახლოებითი პერიოდი (დღე/თვე/წელი) როდის გქონდა Covid-19?*
@@ -85,6 +78,7 @@
               <input
                 type="date"
                 class="border-2 border-gray-800 py-3 px-4 w-[500px] bg-gray-200"
+                v-model="covidDate"
               />
             </div>
           </div>
@@ -107,6 +101,9 @@ export default {
     return {
       hadCovid: "",
       testDone: "",
+      testDate: "",
+      covidAntigen: "",
+      covidDate: "",
     };
   },
   methods: {},
