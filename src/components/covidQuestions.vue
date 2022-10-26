@@ -10,7 +10,7 @@
     <div class="text-gray-800 my-4">2/4</div>
   </div>
 
-  <div class="flex justify-between">
+  <div class="text-xl flex justify-between">
     <div class="mt-8">
       <form action="POST">
         <div>
@@ -19,67 +19,74 @@
           >
           <div class="ml-5">
             <div class="mt-2">
-              <input type="radio" name="covid" />
+              <input type="radio" name="covid" v-model="hadCovid" value="yes" />
               <label>კი</label> <br />
             </div>
 
             <div class="mt-2">
-              <input type="radio" name="covid" />
+              <input type="radio" name="covid" v-model="hadCovid" value="no" />
               <label>არა</label> <br />
             </div>
 
             <div class="my-2">
-              <input type="radio" name="covid" />
+              <input type="radio" name="covid" v-model="hadCovid" value="now" />
               <label>ახლა მაქვს</label> <br />
             </div>
           </div>
         </div>
-        <div>
-          <label class="font-bold" for="covid"
-            >ანტისხეულების ტესტი გაქვს გაკეთებული?*</label
-          >
-          <div class="ml-5 my-2">
-            <div class="mb-2">
-              <input type="radio" name="anti" />
-              <label>კი</label> <br />
+        <div v-if="hadCovid === 'yes'">
+          <div>
+            <label class="font-bold" for="test">
+              ანტისხეულების ტესტი გაქვს გაკეთებული?*
+            </label>
+            <div class="ml-5 my-2">
+              <div class="mb-2">
+                <input
+                  type="radio"
+                  name="test"
+                  v-model="testDone"
+                  value="yes"
+                />
+                <label>კი</label> <br />
+              </div>
+              <div class="my-2">
+                <input type="radio" name="test" v-model="testDone" value="no" />
+                <label>არა</label> <br />
+              </div>
             </div>
-            <div class="my-2">
-              <input type="radio" name="anti" />
-              <label>არა</label> <br />
+          </div>
+          <!-- if yes this -->
+          <div v-if="testDone === 'yes'" class="mt-5">
+            <label class="font-bold">
+              თუ გახსოვს, გთხოვ მიუთითე ტესტის მიახლოებითი რიცხვი და
+              ანტისხეულების რაოდენობა*
+            </label>
+            <div class="ml-5 mt-5">
+              <input
+                type="text"
+                class="border-2 border-gray-800 py-3 px-4 w-[500px] bg-gray-200"
+                placeholder="რიცხვი"
+              />
+            </div>
+            <div class="ml-5 mt-5">
+              <input
+                type="text"
+                class="border-2 border-gray-800 py-3 px-4 w-[500px] bg-gray-200"
+                placeholder="ანტისხეულების რაოდენობა"
+              />
             </div>
           </div>
-        </div>
-        <!-- if yes this -->
-        <div class="mt-5">
-          <label class="font-bold">
-            თუ გახსოვს, გთხოვ მიუთითე ტესტის მიახლოებითი რიცხვი და ანტისხეულების
-            რაოდენობა*
-          </label>
-          <div class="ml-5 mt-5">
-            <input
-              type="text"
-              class="border-2 border-gray-800 py-3 px-4 w-[500px] bg-gray-200"
-              placeholder="რიცხვი"
-            />
-          </div>
-          <div class="ml-5 mt-5">
-            <input
-              type="text"
-              class="border-2 border-gray-800 py-3 px-4 w-[500px] bg-gray-200"
-              placeholder="ანტისხეულების რაოდენობა"
-            />
-          </div>
-        </div>
-        <!-- if not anti than -->
-        <div class="mt-5">
-          <label class="font-bold">
-            მიუთითე მიახლოებითი პერიოდი (დღე/თვე/წელი) როდის გქონდა Covid-19?*
-          </label>
-          <div class="ml-5 mt-5">
-            <input
-              type="date"
-              class="border-2 border-gray-800 py-3 px-4 w-[500px] bg-gray-200"
-            />
+          <!-- if not anti than -->
+          <div v-else-if="testDone === 'no'" class="mt-5">
+            <label class="font-bold">
+              მიუთითე მიახლოებითი პერიოდი (დღე/თვე/წელი) როდის გქონდა Covid-19?*
+            </label>
+            <div class="ml-5 mt-5">
+              <input
+                type="date"
+                class="border-2 border-gray-800 py-3 px-4 w-[500px] bg-gray-200"
+              />
+            </div>
           </div>
         </div>
       </form>
@@ -97,7 +104,11 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      hadCovid: "",
+      testDone: "",
+    };
   },
+  methods: {},
 };
 </script>
