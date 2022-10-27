@@ -11,7 +11,7 @@
               <input
                 type="radio"
                 name="vaccine"
-                v-model="hadVaccine"
+                @input="updateHadVaccine"
                 value="yes"
               />
               <label>კი</label>
@@ -20,7 +20,7 @@
               <input
                 type="radio"
                 name="vaccine"
-                v-model="hadVaccine"
+                @input="updateHadVaccine"
                 value="no"
               />
               <label>არა</label>
@@ -36,7 +36,7 @@
                 <input
                   type="radio"
                   name="stage"
-                  v-model="stageLevel"
+                  @input="updateStageLevel"
                   value="1"
                 />
                 <label>პირველი დოზა და დარეგისტრირებული ვარ მეორეზე</label>
@@ -45,7 +45,7 @@
                 <input
                   type="radio"
                   name="stage"
-                  v-model="stageLevel"
+                  @input="updateStageLevel"
                   value="2"
                 />
                 <label>სრულად აცრილი ვარ</label>
@@ -54,7 +54,7 @@
                 <input
                   type="radio"
                   name="stage"
-                  v-model="stageLevel"
+                  @input="updateStageLevel"
                   value="3"
                 />
                 <label>პირველი დოზა და არ დავრეგისტრირებულვარ მეორეზე</label>
@@ -78,15 +78,30 @@
             <label class="font-bold" for="plan">რას ელოდები?*</label>
             <div class="ml-5">
               <div class="mt-2">
-                <input type="radio" name="plan" v-model="planAhead" value="1" />
+                <input
+                  type="radio"
+                  name="plan"
+                  @input="updatePlanAhead"
+                  value="1"
+                />
                 <label>დარეგისტრირებული ვარ და ველოდები რიცხვს</label>
               </div>
               <div class="mt-2">
-                <input type="radio" name="plan" v-model="planAhead" value="2" />
+                <input
+                  type="radio"
+                  name="plan"
+                  @input="updatePlanAhead"
+                  value="2"
+                />
                 <label>არ ვგეგმავ</label>
               </div>
               <div class="my-2">
-                <input type="radio" name="plan" v-model="planAhead" value="3" />
+                <input
+                  type="radio"
+                  name="plan"
+                  @input="updatePlanAhead"
+                  value="3"
+                />
                 <label>გადატანილი მაქვს და ვგეგმავ აცრას</label>
               </div>
             </div>
@@ -123,13 +138,26 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   data() {
-    return {
-      hadVaccine: "",
-      stageLevel: "",
-      planAhead: "",
-    };
+    return {};
+  },
+  computed: {
+    ...mapState(["hadVaccine", "stageLevel", "planAhead"]),
+  },
+
+  methods: {
+    updateHadVaccine(e) {
+      this.$store.state.hadVaccine = e.target.value;
+    },
+    updateStageLevel(e) {
+      this.$store.state.stageLevel = e.target.value;
+    },
+    updatePlanAhead(e) {
+      this.$store.state.planAhead = e.target.value;
+    },
   },
 };
 </script>

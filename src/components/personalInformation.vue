@@ -10,6 +10,7 @@
             <input
               type="name"
               class="border-2 border-gray-800 py-3 px-4 w-[500px] bg-gray-200"
+              @input="updateName"
             />
           </div>
         </div>
@@ -19,6 +20,7 @@
             <input
               type="text"
               class="border-2 border-gray-800 py-3 px-4 w-[500px] bg-gray-200"
+              @input="updateLastName"
             />
           </div>
         </div>
@@ -28,6 +30,7 @@
             <input
               type="email"
               class="border-2 border-gray-800 py-3 px-4 w-[500px] bg-gray-200"
+              @input="updateEmail"
             />
           </div>
         </div>
@@ -50,9 +53,26 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   data() {
     return {};
+  },
+  computed: {
+    ...mapState(["name", "lastname", "email"]),
+  },
+
+  methods: {
+    updateName(e) {
+      this.$store.state.name = e.target.value;
+    },
+    updateLastName(e) {
+      this.$store.state.lastname = e.target.value;
+    },
+    updateEmail(e) {
+      this.$store.state.email = e.target.value;
+    },
   },
 };
 </script>

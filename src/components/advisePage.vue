@@ -24,20 +24,40 @@
           </label>
           <div class="ml-5">
             <div class="mt-2">
-              <input type="radio" name="office" />
+              <input
+                type="radio"
+                name="office"
+                @input="updateMettingNumber"
+                value="1"
+              />
               <label>კვირაში ორჯერ</label>
             </div>
             <div class="mt-2">
-              <input type="radio" name="office" />
+              <input
+                type="radio"
+                name="office"
+                @input="updateMettingNumber"
+                value="2"
+              />
               <label>კვირაში ერთხელი</label>
             </div>
             <div class="mt-2">
-              <input type="radio" name="office" />
+              <input
+                type="radio"
+                name="office"
+                @input="updateMettingNumber"
+                value="3"
+              />
               <label>ორ კვირაში ერთხელი</label>
             </div>
 
             <div class="my-2">
-              <input type="radio" name="office" />
+              <input
+                type="radio"
+                name="office"
+                @input="updateMettingNumber"
+                value="4"
+              />
               <label>თვეში ერთხელი</label>
             </div>
           </div>
@@ -48,27 +68,59 @@
           </label>
           <div class="ml-5">
             <div class="mt-2">
-              <input type="radio" name="week" />
+              <input
+                type="radio"
+                name="week"
+                @input="updateOfficeWork"
+                value="0"
+              />
               <label>0</label>
             </div>
             <div class="mt-2">
-              <input type="radio" name="week" />
+              <input
+                type="radio"
+                name="week"
+                @input="updateOfficeWork"
+                value="1"
+              />
               <label>1</label>
             </div>
             <div class="mt-2">
-              <input type="radio" name="week" />
+              <input
+                type="radio"
+                name="week"
+                @input="updateOfficeWork"
+                value="2"
+              />
               <label>2</label>
             </div>
             <div class="mt-2">
-              <input type="radio" name="week" />
+              <input
+                type="radio"
+                name="week"
+                @input="updateOfficeWork"
+                value="03"
+              />
               <label>3</label>
             </div>
             <div class="mt-2">
-              <input type="radio" name="week" />
+              <input
+                type="radio"
+                name="week"
+                @input="updateOfficeWork"
+                value="4"
+              />
               <label>4</label>
             </div>
             <div class="mt-2">
-              <input type="radio" name="week" /> <label>5</label> <br />
+              <input
+                type="radio"
+                name="week"
+                @input="updateOfficeWork"
+                value="5"
+              />
+              <label>5</label>
+              <br />
             </div>
           </div>
         </div>
@@ -80,6 +132,7 @@
             <input
               type="text"
               class="border-2 border-gray-800 p-4 w-[600px] h-44 bg-gray-200"
+              @input="updateMeetingOpinion"
             />
           </div>
         </div>
@@ -92,6 +145,7 @@
             <input
               type="text"
               class="border-2 border-gray-800 p-4 w-[600px] h-44 bg-gray-200"
+              @input="updateAdviseOpinion"
             />
           </div>
         </div>
@@ -113,9 +167,34 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   data() {
     return {};
+  },
+  computed: {
+    ...mapState([
+      "mettingNumber",
+      "officeWork",
+      "meetingOpinion",
+      "adviseOpinion",
+    ]),
+  },
+
+  methods: {
+    updateMettingNumber(e) {
+      this.$store.state.mettingNumber = e.target.value;
+    },
+    updateOfficeWork(e) {
+      this.$store.state.officeWork = e.target.value;
+    },
+    updateMeetingOpinion(e) {
+      this.$store.state.meetingOpinion = e.target.value;
+    },
+    updateAdviseOpinion(e) {
+      this.$store.state.adviseOpinion = e.target.value;
+    },
   },
 };
 </script>

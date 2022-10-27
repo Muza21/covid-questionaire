@@ -10,17 +10,32 @@
           >
           <div class="ml-5">
             <div class="mt-2">
-              <input type="radio" name="covid" v-model="hadCovid" value="yes" />
+              <input
+                type="radio"
+                name="covid"
+                @input="updateHadCovid"
+                value="yes"
+              />
               <label>კი</label> <br />
             </div>
 
             <div class="mt-2">
-              <input type="radio" name="covid" v-model="hadCovid" value="no" />
+              <input
+                type="radio"
+                name="covid"
+                @input="updateHadCovid"
+                value="no"
+              />
               <label>არა</label> <br />
             </div>
 
             <div class="my-2">
-              <input type="radio" name="covid" v-model="hadCovid" value="now" />
+              <input
+                type="radio"
+                name="covid"
+                @input="updateHadCovid"
+                value="now"
+              />
               <label>ახლა მაქვს</label> <br />
             </div>
           </div>
@@ -35,13 +50,18 @@
                 <input
                   type="radio"
                   name="test"
-                  v-model="testDone"
+                  @input="updateTestDone"
                   value="yes"
                 />
                 <label>კი</label> <br />
               </div>
               <div class="my-2">
-                <input type="radio" name="test" v-model="testDone" value="no" />
+                <input
+                  type="radio"
+                  name="test"
+                  @input="updateTestDone"
+                  value="no"
+                />
                 <label>არა</label> <br />
               </div>
             </div>
@@ -57,7 +77,7 @@
                 type="text"
                 class="border-2 border-gray-800 py-3 px-4 w-[500px] bg-gray-200"
                 placeholder="რიცხვი"
-                v-model="testDate"
+                @input="updateTestDate"
               />
             </div>
             <div class="ml-5 mt-5">
@@ -65,11 +85,10 @@
                 type="text"
                 class="border-2 border-gray-800 py-3 px-4 w-[500px] bg-gray-200"
                 placeholder="ანტისხეულების რაოდენობა"
-                v-model="covidAntigen"
+                @input="updateCovidAntigen"
               />
             </div>
           </div>
-
           <div v-else-if="testDone === 'no'" class="mt-5">
             <label class="font-bold">
               მიუთითე მიახლოებითი პერიოდი (დღე/თვე/წელი) როდის გქონდა Covid-19?*
@@ -78,7 +97,7 @@
               <input
                 type="date"
                 class="border-2 border-gray-800 py-3 px-4 w-[500px] bg-gray-200"
-                v-model="covidDate"
+                @input="updateCovidDate"
               />
             </div>
           </div>
@@ -96,16 +115,38 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   data() {
-    return {
-      hadCovid: "",
-      testDone: "",
-      testDate: "",
-      covidAntigen: "",
-      covidDate: "",
-    };
+    return {};
   },
-  methods: {},
+  computed: {
+    ...mapState([
+      "hadCovid",
+      "testDone",
+      "testDate",
+      "covidAntigen",
+      "covidDate",
+    ]),
+  },
+
+  methods: {
+    updateHadCovid(e) {
+      this.$store.state.hadCovid = e.target.value;
+    },
+    updateTestDone(e) {
+      this.$store.state.testDone = e.target.value;
+    },
+    updateTestDate(e) {
+      this.$store.state.testDate = e.target.value;
+    },
+    updateCovidAntigen(e) {
+      this.$store.state.covidAntigen = e.target.value;
+    },
+    updateCovidDate(e) {
+      this.$store.state.covidDate = e.target.value;
+    },
+  },
 };
 </script>
