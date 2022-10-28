@@ -1,14 +1,14 @@
 <template>
-  <navigation-bar></navigation-bar>
+  <Form @submit="onSubmit">
+    <navigation-bar></navigation-bar>
 
-  <div class="text-xl flex justify-between">
-    <div class="mt-8">
-      <form action="POST">
+    <div class="text-xl flex justify-between">
+      <div class="mt-8">
         <div>
           <label class="font-bold" for="vaccine">უკვე აცრილი ხარ?*</label>
           <div class="ml-5">
             <div class="mt-2">
-              <input
+              <Field
                 type="radio"
                 name="vaccine"
                 @input="updateHadVaccine"
@@ -17,7 +17,7 @@
               <label>კი</label>
             </div>
             <div class="my-2">
-              <input
+              <Field
                 type="radio"
                 name="vaccine"
                 @input="updateHadVaccine"
@@ -25,6 +25,7 @@
               />
               <label>არა</label>
             </div>
+            <ErrorMessage name="vaccine" />
           </div>
         </div>
 
@@ -33,7 +34,7 @@
             <label class="font-bold" for="stage">აირჩიე რა ეტაპზე ხარ*</label>
             <div class="ml-5">
               <div class="mt-2">
-                <input
+                <Field
                   type="radio"
                   name="stage"
                   @input="updateStageLevel"
@@ -42,7 +43,7 @@
                 <label>პირველი დოზა და დარეგისტრირებული ვარ მეორეზე</label>
               </div>
               <div class="mt-2">
-                <input
+                <Field
                   type="radio"
                   name="stage"
                   @input="updateStageLevel"
@@ -51,7 +52,7 @@
                 <label>სრულად აცრილი ვარ</label>
               </div>
               <div class="my-2">
-                <input
+                <Field
                   type="radio"
                   name="stage"
                   @input="updateStageLevel"
@@ -59,6 +60,7 @@
                 />
                 <label>პირველი დოზა და არ დავრეგისტრირებულვარ მეორეზე</label>
               </div>
+              <ErrorMessage name="stage" />
             </div>
           </div>
           <!-- if the last option is selected -->
@@ -78,7 +80,7 @@
             <label class="font-bold" for="plan">რას ელოდები?*</label>
             <div class="ml-5">
               <div class="mt-2">
-                <input
+                <Field
                   type="radio"
                   name="plan"
                   @input="updatePlanAhead"
@@ -87,7 +89,7 @@
                 <label>დარეგისტრირებული ვარ და ველოდები რიცხვს</label>
               </div>
               <div class="mt-2">
-                <input
+                <Field
                   type="radio"
                   name="plan"
                   @input="updatePlanAhead"
@@ -96,7 +98,7 @@
                 <label>არ ვგეგმავ</label>
               </div>
               <div class="my-2">
-                <input
+                <Field
                   type="radio"
                   name="plan"
                   @input="updatePlanAhead"
@@ -104,6 +106,7 @@
                 />
                 <label>გადატანილი მაქვს და ვგეგმავ აცრას</label>
               </div>
+              <ErrorMessage name="plan" />
             </div>
           </div>
           <!-- if second option is selected -->
@@ -125,30 +128,42 @@
             >
           </div>
         </div>
-      </form>
+      </div>
+      <div>
+        <img src="src/assets/doctor2.png" alt="doctor" />
+      </div>
     </div>
-    <div>
-      <img src="src/assets/doctor2.png" alt="doctor" />
+    <div class="flex justify-between w-[130px] m-auto">
+      <div><img src="src/assets/back.svg" alt="next" /></div>
+      <button><img src="src/assets/next.svg" alt="next" /></button>
     </div>
-  </div>
-  <div class="flex justify-between w-[130px] m-auto">
-    <div><img src="src/assets/back.svg" alt="next" /></div>
-    <div><img src="src/assets/next.svg" alt="next" /></div>
-  </div>
+  </Form>
 </template>
 
 <script>
 import { mapState } from "vuex";
+import { Form, Field, ErrorMessage } from "vee-validate";
 
 export default {
   data() {
     return {};
   },
+
+  components: {
+    Field,
+    Form,
+    ErrorMessage,
+  },
+
   computed: {
     ...mapState(["hadVaccine", "stageLevel", "planAhead"]),
   },
 
   methods: {
+    onSubmit(values) {
+      console.log(values);
+      alert("Everything is Valid");
+    },
     updateHadVaccine(e) {
       this.$store.state.hadVaccine = e.target.value;
     },

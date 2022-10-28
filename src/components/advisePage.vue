@@ -1,22 +1,22 @@
 <template>
-  <navigation-bar></navigation-bar>
+  <Form @submit="onSubmit">
+    <navigation-bar></navigation-bar>
 
-  <div class="flex justify-between text-xl">
-    <div class="mt-8 w-2/5">
-      <div>
-        <p class="mb-4">
-          რედბერის მთავარი ღირებულება ჩვენი გუნდის თითოეული წევრია. გარემო,
-          რომელსაც ჩვენი თანამშრომლები ქმნით. ბევრისთვის არის და ყოფილა წლების
-          განმავლობაში მიზნებისთვის ერთად ბრძოლის მიზეზი, ბევრისთვის კი -
-          ჩვენთან გადმოსვლის.
-        </p>
+    <div class="flex justify-between text-xl">
+      <div class="mt-8 w-2/5">
+        <div>
+          <p class="mb-4">
+            რედბერის მთავარი ღირებულება ჩვენი გუნდის თითოეული წევრია. გარემო,
+            რომელსაც ჩვენი თანამშრომლები ქმნით. ბევრისთვის არის და ყოფილა წლების
+            განმავლობაში მიზნებისთვის ერთად ბრძოლის მიზეზი, ბევრისთვის კი -
+            ჩვენთან გადმოსვლის.
+          </p>
 
-        <p class="mb-4">
-          პანდემიის პერიოდში ერთმანეთსაც იშვიათად ვნახულობთ პირისპირ და
-          ყოველდღიური კომუნიკაციაც გაიშვიათდა.
-        </p>
-      </div>
-      <form action="POST">
+          <p class="mb-4">
+            პანდემიის პერიოდში ერთმანეთსაც იშვიათად ვნახულობთ პირისპირ და
+            ყოველდღიური კომუნიკაციაც გაიშვიათდა.
+          </p>
+        </div>
         <div>
           <label class="font-bold" for="office">
             რა სიხშირით შეიძლება გვქონდეს საერთო არაფორმალური ონლაინ შეხვდერები,
@@ -24,7 +24,7 @@
           </label>
           <div class="ml-5">
             <div class="mt-2">
-              <input
+              <Field
                 type="radio"
                 name="office"
                 @input="updateMettingNumber"
@@ -33,7 +33,7 @@
               <label>კვირაში ორჯერ</label>
             </div>
             <div class="mt-2">
-              <input
+              <Field
                 type="radio"
                 name="office"
                 @input="updateMettingNumber"
@@ -42,7 +42,7 @@
               <label>კვირაში ერთხელი</label>
             </div>
             <div class="mt-2">
-              <input
+              <Field
                 type="radio"
                 name="office"
                 @input="updateMettingNumber"
@@ -52,7 +52,7 @@
             </div>
 
             <div class="my-2">
-              <input
+              <Field
                 type="radio"
                 name="office"
                 @input="updateMettingNumber"
@@ -60,6 +60,7 @@
               />
               <label>თვეში ერთხელი</label>
             </div>
+            <ErrorMessage name="office" />
           </div>
         </div>
         <div class="mt-8">
@@ -68,7 +69,7 @@
           </label>
           <div class="ml-5">
             <div class="mt-2">
-              <input
+              <Field
                 type="radio"
                 name="week"
                 @input="updateOfficeWork"
@@ -77,7 +78,7 @@
               <label>0</label>
             </div>
             <div class="mt-2">
-              <input
+              <Field
                 type="radio"
                 name="week"
                 @input="updateOfficeWork"
@@ -86,7 +87,7 @@
               <label>1</label>
             </div>
             <div class="mt-2">
-              <input
+              <Field
                 type="radio"
                 name="week"
                 @input="updateOfficeWork"
@@ -95,7 +96,7 @@
               <label>2</label>
             </div>
             <div class="mt-2">
-              <input
+              <Field
                 type="radio"
                 name="week"
                 @input="updateOfficeWork"
@@ -104,7 +105,7 @@
               <label>3</label>
             </div>
             <div class="mt-2">
-              <input
+              <Field
                 type="radio"
                 name="week"
                 @input="updateOfficeWork"
@@ -113,66 +114,78 @@
               <label>4</label>
             </div>
             <div class="mt-2">
-              <input
+              <Field
                 type="radio"
                 name="week"
                 @input="updateOfficeWork"
                 value="5"
               />
               <label>5</label>
-              <br />
             </div>
+            <ErrorMessage name="week" />
           </div>
         </div>
         <div class="mt-8">
-          <label class="font-bold" for="name">
+          <label class="font-bold" for="meetingOpinion">
             რას ფიქრობთ ფიზიკურ შეკრებებზე?*
           </label>
           <div class="mt-2">
-            <input
+            <Field
               type="text"
+              name="meetingOpinion"
               class="border-2 border-gray-800 p-4 w-[600px] h-44 bg-gray-200"
               @input="updateMeetingOpinion"
             />
           </div>
+          <ErrorMessage name="meetingOpinion" />
         </div>
         <div class="my-8">
-          <label class="font-bold" for="name">
+          <label class="font-bold" for="adviseOpinion">
             რას ფიქრობ არსებულ გარემოზე: რა მოგწონს, რას დაამატებდი, რას
             შეცვლიდი?*
           </label>
           <div class="mt-2">
-            <input
+            <Field
               type="text"
+              name="adviseOpinion"
               class="border-2 border-gray-800 p-4 w-[600px] h-44 bg-gray-200"
               @input="updateAdviseOpinion"
             />
           </div>
+          <ErrorMessage name="adviseOpinion" />
         </div>
-      </form>
+      </div>
+      <div>
+        <img src="src/assets/bike2 2.png" alt="bike" />
+      </div>
     </div>
-    <div>
-      <img src="src/assets/bike2 2.png" alt="bike" />
+    <div class="w-2/5">
+      <button class="px-8 py-3 rounded-3xl bg-cyan-700 text-white font-bold">
+        დასრულება
+      </button>
     </div>
-  </div>
-  <div class="w-2/5">
-    <button class="px-8 py-3 rounded-3xl bg-cyan-700 text-white font-bold">
-      დასრულება
-    </button>
-  </div>
-  <div class="flex justify-between w-[130px] m-auto">
-    <div><img src="src/assets/back.svg" alt="next" /></div>
-    <div></div>
-  </div>
+    <div class="flex justify-between w-[130px] m-auto">
+      <div><img src="src/assets/back.svg" alt="next" /></div>
+      <div></div>
+    </div>
+  </Form>
 </template>
 
 <script>
 import { mapState } from "vuex";
+import { Form, Field, ErrorMessage } from "vee-validate";
 
 export default {
   data() {
     return {};
   },
+
+  components: {
+    Field,
+    Form,
+    ErrorMessage,
+  },
+
   computed: {
     ...mapState([
       "mettingNumber",
@@ -183,6 +196,10 @@ export default {
   },
 
   methods: {
+    onSubmit(values) {
+      console.log(values);
+      alert("Everything is Valid");
+    },
     updateMettingNumber(e) {
       this.$store.state.mettingNumber = e.target.value;
     },
