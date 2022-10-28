@@ -29,6 +29,11 @@ const store = createStore({
       hadVaccine: "",
       stageLevel: "",
       planAhead: "",
+
+      mettingNumber: "",
+      officeWork: "",
+      meetingOpinion: "",
+      adviseOpinion: "",
     };
   },
 });
