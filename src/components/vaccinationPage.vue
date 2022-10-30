@@ -1,112 +1,178 @@
 <template>
-  <div
-    class="flex justify-between text-red-500 font-extrabold w-full text-3xl border-b-2 border-gray-800"
-  >
-    <div class="flex my-4">
-      <h1 class="text-3xl">REDBERRY</h1>
-      <img class="-mt-3" src="src/assets/logoR.svg" alt="logo" />
-    </div>
+  <Form @submit="onSubmit">
+    <navigation-bar></navigation-bar>
 
-    <div class="text-gray-800 my-4">3/4</div>
-  </div>
-
-  <div class="text-xl flex justify-between">
-    <div class="mt-8">
-      <form action="POST">
-        <div class="ml-5">
+    <div class="text-xl flex justify-between">
+      <div class="mt-8">
+        <div>
           <label class="font-bold" for="vaccine">უკვე აცრილი ხარ?*</label>
-          <div>
+          <div class="ml-5">
             <div class="mt-2">
-              <input type="radio" name="vaccine" />
+              <Field
+                type="radio"
+                name="vaccine"
+                @input="updateHadVaccine"
+                value="yes"
+              />
               <label>კი</label>
             </div>
             <div class="my-2">
-              <input type="radio" name="vaccine" />
+              <Field
+                type="radio"
+                name="vaccine"
+                @input="updateHadVaccine"
+                value="no"
+              />
               <label>არა</label>
             </div>
+            <ErrorMessage name="vaccine" />
           </div>
         </div>
-        <!-- if yes this -->
 
-        <div>
-          <label class="font-bold" for="stage">აირჩიე რა ეტაპზე ხარ*</label>
-          <div class="ml-5">
-            <div class="mt-2">
-              <input type="radio" name="stage" />
-              <label>პირველი დოზა და დარეგისტრირებული ვარ მეორეზე</label>
-            </div>
-            <div class="mt-2">
-              <input type="radio" name="stage" />
-              <label>სრულად აცრილი ვარ</label>
-            </div>
-            <div class="my-2">
-              <input type="radio" name="stage" />
-              <label>პირველი დოზა და არ დავრეგისტრირებულვარ მეორეზე</label>
+        <div v-if="hadVaccine === 'yes'">
+          <div>
+            <label class="font-bold" for="stage">აირჩიე რა ეტაპზე ხარ*</label>
+            <div class="ml-5">
+              <div class="mt-2">
+                <Field
+                  type="radio"
+                  name="stage"
+                  @input="updateStageLevel"
+                  value="1"
+                />
+                <label>პირველი დოზა და დარეგისტრირებული ვარ მეორეზე</label>
+              </div>
+              <div class="mt-2">
+                <Field
+                  type="radio"
+                  name="stage"
+                  @input="updateStageLevel"
+                  value="2"
+                />
+                <label>სრულად აცრილი ვარ</label>
+              </div>
+              <div class="my-2">
+                <Field
+                  type="radio"
+                  name="stage"
+                  @input="updateStageLevel"
+                  value="3"
+                />
+                <label>პირველი დოზა და არ დავრეგისტრირებულვარ მეორეზე</label>
+              </div>
+              <ErrorMessage name="stage" />
             </div>
           </div>
+          <!-- if the last option is selected -->
+          <div v-if="stageLevel === '3'" class="mt-10 ml-12">
+            <p>
+              რომ არ გადადო,<br />
+              ბარემ ახლავე დარეგისტრირდი<br />
+              <a class="text-cyan-600" href="https://booking.moh.gov.ge/"
+                >https://booking.moh.gov.ge/</a
+              >
+            </p>
+          </div>
         </div>
-        <!-- if the last option is selected -->
-        <div class="mt-10 ml-12">
-          <p>
-            რომ არ გადადო,<br />
-            ბარემ ახლავე დარეგისტრირდი<br />
+
+        <div v-else-if="hadVaccine === 'no'">
+          <div>
+            <label class="font-bold" for="plan">რას ელოდები?*</label>
+            <div class="ml-5">
+              <div class="mt-2">
+                <Field
+                  type="radio"
+                  name="plan"
+                  @input="updatePlanAhead"
+                  value="1"
+                />
+                <label>დარეგისტრირებული ვარ და ველოდები რიცხვს</label>
+              </div>
+              <div class="mt-2">
+                <Field
+                  type="radio"
+                  name="plan"
+                  @input="updatePlanAhead"
+                  value="2"
+                />
+                <label>არ ვგეგმავ</label>
+              </div>
+              <div class="my-2">
+                <Field
+                  type="radio"
+                  name="plan"
+                  @input="updatePlanAhead"
+                  value="3"
+                />
+                <label>გადატანილი მაქვს და ვგეგმავ აცრას</label>
+              </div>
+              <ErrorMessage name="plan" />
+            </div>
+          </div>
+          <!-- if second option is selected -->
+          <div v-if="planAhead === '2'" class="mt-10 ml-12">
             <a class="text-cyan-600" href="https://booking.moh.gov.ge/"
               >https://booking.moh.gov.ge/</a
             >
-          </p>
-        </div>
-        <!-- if not than -->
-        <div>
-          <label class="font-bold" for="plan">რას ელოდები?*</label>
-          <div class="ml-5">
-            <div class="mt-2">
-              <input type="radio" name="plan" />
-              <label>დარეგისტრირებული ვარ და ველოდები რიცხვს</label> <br />
-            </div>
-            <div class="mt-2">
-              <input type="radio" name="plan" />
-              <label>არ ვგეგმავ</label> <br />
-            </div>
-            <div class="my-2">
-              <input type="radio" name="plan" />
-              <label>გადატანილი მაქვს და ვგეგმავ აცრას</label> <br />
-            </div>
+          </div>
+          <!-- if the last option is selected -->
+          <div v-else-if="planAhead === '3'" class="mt-10 ml-12 w-[490px]">
+            <p>
+              ახალი პროტოკოლით კოვიდის გადატანიდან 1 თვის შემდეგ შეგიძლიათ
+              ვაქცინის გაკეთება.
+            </p>
+            <br />
+            <p>რეგისტრაციის ბმული</p>
+            <a class="text-cyan-600" href="https://booking.moh.gov.ge/"
+              >https://booking.moh.gov.ge/</a
+            >
           </div>
         </div>
-        <!-- if second option is selected -->
-        <div class="mt-10 ml-12">
-          <a class="text-cyan-600" href="https://booking.moh.gov.ge/"
-            >https://booking.moh.gov.ge/</a
-          >
-        </div>
-        <!-- if the last option is selected -->
-        <div class="mt-10 ml-12 w-[490px]">
-          <p>
-            ახალი პროტოკოლით კოვიდის გადატანიდან 1 თვის შემდეგ შეგიძლიათ
-            ვაქცინის გაკეთება.
-          </p>
-          <br />
-          <p>რეგისტრაციის ბმული</p>
-          <a class="text-cyan-600" href="https://booking.moh.gov.ge/"
-            >https://booking.moh.gov.ge/</a
-          >
-        </div>
-      </form>
+      </div>
+      <div>
+        <img src="src/assets/doctor2.png" alt="doctor" />
+      </div>
     </div>
-    <div>
-      <img src="src/assets/doctor2.png" alt="doctor" />
+    <div class="flex justify-between w-[130px] m-auto">
+      <div><img src="src/assets/back.svg" alt="next" /></div>
+      <button><img src="src/assets/next.svg" alt="next" /></button>
     </div>
-  </div>
-  <div class="flex justify-between w-[130px] m-auto">
-    <div><img src="src/assets/back.svg" alt="next" /></div>
-    <div><img src="src/assets/next.svg" alt="next" /></div>
-  </div>
+  </Form>
 </template>
 
 <script>
+import { mapState } from "vuex";
+import { Form, Field, ErrorMessage } from "vee-validate";
+
 export default {
   data() {
     return {};
+  },
+
+  components: {
+    Field,
+    Form,
+    ErrorMessage,
+  },
+
+  computed: {
+    ...mapState(["hadVaccine", "stageLevel", "planAhead"]),
+  },
+
+  methods: {
+    onSubmit(values) {
+      console.log(values);
+      alert("Everything is Valid");
+    },
+    updateHadVaccine(e) {
+      this.$store.state.hadVaccine = e.target.value;
+    },
+    updateStageLevel(e) {
+      this.$store.state.stageLevel = e.target.value;
+    },
+    updatePlanAhead(e) {
+      this.$store.state.planAhead = e.target.value;
+    },
   },
 };
 </script>

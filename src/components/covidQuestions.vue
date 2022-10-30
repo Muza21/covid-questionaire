@@ -1,103 +1,178 @@
 <template>
-  <div
-    class="flex justify-between text-red-500 font-extrabold w-full text-3xl border-b-2 border-gray-800"
-  >
-    <div class="flex my-4">
-      <h1 class="text-3xl">REDBERRY</h1>
-      <img class="-mt-3" src="src/assets/logoR.svg" alt="logo" />
-    </div>
+  <Form @submit="onSubmit">
+    <navigation-bar></navigation-bar>
 
-    <div class="text-gray-800 my-4">2/4</div>
-  </div>
-
-  <div class="flex justify-between">
-    <div class="mt-8">
-      <form action="POST">
+    <div class="text-xl flex justify-between">
+      <div class="mt-8">
         <div>
           <label class="font-bold" for="covid"
             >გადატანილი გაქვს თუ არა Covid-19?*</label
           >
           <div class="ml-5">
             <div class="mt-2">
-              <input type="radio" name="covid" />
-              <label>კი</label> <br />
+              <!-- <input
+                type="radio"
+                name="covid"
+                @input="updateHadCovid"
+                value="yes"
+              /> -->
+              <Field
+                type="radio"
+                name="covid"
+                @input="updateHadCovid"
+                value="yes"
+              />
+              <label>კი</label>
             </div>
 
             <div class="mt-2">
-              <input type="radio" name="covid" />
-              <label>არა</label> <br />
+              <Field
+                type="radio"
+                name="covid"
+                @input="updateHadCovid"
+                value="no"
+              />
+              <label>არა</label>
             </div>
 
             <div class="my-2">
-              <input type="radio" name="covid" />
-              <label>ახლა მაქვს</label> <br />
+              <Field
+                type="radio"
+                name="covid"
+                @input="updateHadCovid"
+                value="now"
+              />
+              <label>ახლა მაქვს</label>
+            </div>
+            <ErrorMessage name="covid" />
+          </div>
+        </div>
+        <div v-if="hadCovid === 'yes'">
+          <div>
+            <label class="font-bold" for="test">
+              ანტისხეულების ტესტი გაქვს გაკეთებული?*
+            </label>
+            <div class="ml-5 my-2">
+              <div class="mb-2">
+                <Field
+                  type="radio"
+                  name="test"
+                  @input="updateTestDone"
+                  value="yes"
+                />
+                <label>კი</label>
+              </div>
+              <div class="my-2">
+                <Field
+                  type="radio"
+                  name="test"
+                  @input="updateTestDone"
+                  value="no"
+                />
+                <label>არა</label>
+              </div>
+              <ErrorMessage name="test" />
+            </div>
+          </div>
+
+          <div v-if="testDone === 'yes'" class="mt-5">
+            <label class="font-bold">
+              თუ გახსოვს, გთხოვ მიუთითე ტესტის მიახლოებითი რიცხვი და
+              ანტისხეულების რაოდენობა*
+            </label>
+            <div class="ml-5 mt-5">
+              <Field
+                name="testDate"
+                type="text"
+                class="border-2 border-gray-800 py-3 px-4 w-[500px] bg-gray-200"
+                placeholder="რიცხვი"
+                @input="updateTestDate"
+              />
+              <ErrorMessage name="testDate" />
+            </div>
+            <div class="ml-5 mt-5">
+              <Field
+                name="covidAntigen"
+                type="text"
+                class="border-2 border-gray-800 py-3 px-4 w-[500px] bg-gray-200"
+                placeholder="ანტისხეულების რაოდენობა"
+                @input="updateCovidAntigen"
+              />
+              <ErrorMessage name="covidAntigen" />
+            </div>
+          </div>
+          <div v-else-if="testDone === 'no'" class="mt-5">
+            <label class="font-bold">
+              მიუთითე მიახლოებითი პერიოდი (დღე/თვე/წელი) როდის გქონდა Covid-19?*
+            </label>
+            <div class="ml-5 mt-5">
+              <Field
+                name="covidDate"
+                type="date"
+                class="border-2 border-gray-800 py-3 px-4 w-[500px] bg-gray-200"
+                @input="updateCovidDate"
+              />
+              <ErrorMessage name="covidDate" />
             </div>
           </div>
         </div>
-        <div>
-          <label class="font-bold" for="covid"
-            >ანტისხეულების ტესტი გაქვს გაკეთებული?*</label
-          >
-          <div class="ml-5 my-2">
-            <div class="mb-2">
-              <input type="radio" name="anti" />
-              <label>კი</label> <br />
-            </div>
-            <div class="my-2">
-              <input type="radio" name="anti" />
-              <label>არა</label> <br />
-            </div>
-          </div>
-        </div>
-        <!-- if yes this -->
-        <div class="mt-5">
-          <label class="font-bold">
-            თუ გახსოვს, გთხოვ მიუთითე ტესტის მიახლოებითი რიცხვი და ანტისხეულების
-            რაოდენობა*
-          </label>
-          <div class="ml-5 mt-5">
-            <input
-              type="text"
-              class="border-2 border-gray-800 py-3 px-4 w-[500px] bg-gray-200"
-              placeholder="რიცხვი"
-            />
-          </div>
-          <div class="ml-5 mt-5">
-            <input
-              type="text"
-              class="border-2 border-gray-800 py-3 px-4 w-[500px] bg-gray-200"
-              placeholder="ანტისხეულების რაოდენობა"
-            />
-          </div>
-        </div>
-        <!-- if not anti than -->
-        <div class="mt-5">
-          <label class="font-bold">
-            მიუთითე მიახლოებითი პერიოდი (დღე/თვე/წელი) როდის გქონდა Covid-19?*
-          </label>
-          <div class="ml-5 mt-5">
-            <input
-              type="date"
-              class="border-2 border-gray-800 py-3 px-4 w-[500px] bg-gray-200"
-            />
-          </div>
-        </div>
-      </form>
+      </div>
+      <div>
+        <img src="src/assets/vaccinate2.png" alt="vaccinate" />
+      </div>
     </div>
-    <div>
-      <img src="src/assets/vaccinate2.png" alt="vaccinate" />
+    <div class="flex justify-between w-[130px] m-auto">
+      <div><img src="src/assets/back.svg" alt="back" /></div>
+      <button><img src="src/assets/next.svg" alt="next" /></button>
     </div>
-  </div>
-  <div class="flex justify-between w-[130px] m-auto">
-    <div><img src="src/assets/back.svg" alt="next" /></div>
-    <div><img src="src/assets/next.svg" alt="next" /></div>
-  </div>
+  </Form>
 </template>
 
 <script>
+import { mapState } from "vuex";
+import { Form, Field, ErrorMessage } from "vee-validate";
+
 export default {
   data() {
     return {};
+  },
+
+  components: {
+    Field,
+    Form,
+    ErrorMessage,
+  },
+
+  computed: {
+    ...mapState([
+      "hadCovid",
+      "testDone",
+      "testDate",
+      "covidAntigen",
+      "covidDate",
+    ]),
+  },
+
+  methods: {
+    onSubmit(values) {
+      console.log(values);
+      alert("Everything is Valid");
+    },
+    updateHadCovid(e) {
+      this.$store.state.hadCovid = e.target.value;
+    },
+    updateTestDone(e) {
+      this.$store.state.testDone = e.target.value;
+    },
+    updateTestDate(e) {
+      this.$store.state.testDate = e.target.value;
+    },
+    updateCovidAntigen(e) {
+      this.$store.state.covidAntigen = e.target.value;
+    },
+    updateCovidDate(e) {
+      this.$store.state.covidDate = e.target.value;
+    },
   },
 };
 </script>
