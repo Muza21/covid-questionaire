@@ -4,7 +4,11 @@
       <img src="src/assets/redberryLogo.svg" alt="logo" />
     </div>
     <div>
-      <h1>კითხვარის დაწყება</h1>
+      <h1>
+        <router-link :to="{ name: 'personalInformation' }"
+          >კითხვარის დაწყება
+        </router-link>
+      </h1>
     </div>
   </div>
 </template>
