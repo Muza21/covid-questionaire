@@ -7,10 +7,18 @@
       <img class="-mt-3" src="src/assets/logoR.svg" alt="logo" />
     </div>
 
-    <div class="text-gray-800 my-4">2/4</div>
+    <div class="text-gray-800 my-4">{{ id }}/4</div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  props: ["id"],
+  // props: {
+  //   id: {
+  //     type: String,
+  //     default: null,
+  //   },
+  // },
+};
 </script>

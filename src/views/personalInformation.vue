@@ -1,7 +1,7 @@
 <template>
   <div class="bg-gray-200 px-[200px] pt-[100px]">
     <Form @submit="onSubmit">
-      <navigation-bar></navigation-bar>
+      <navigation-bar :id="pageNum"></navigation-bar>
 
       <div class="flex justify-between">
         <div class="mt-8">
@@ -72,7 +72,15 @@ import { Form, Field, ErrorMessage } from "vee-validate";
 
 export default {
   data() {
-    return {};
+    return {
+      pageNum: this.id,
+    };
+  },
+  props: {
+    id: {
+      type: String,
+      default: null,
+    },
   },
   components: {
     Field,
