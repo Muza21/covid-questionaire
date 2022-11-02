@@ -11,12 +11,6 @@
             >
             <div class="ml-5">
               <div class="mt-2">
-                <!-- <input
-                type="radio"
-                name="covid"
-                @input="updateHadCovid"
-                value="yes"
-              /> -->
                 <Field
                   type="radio"
                   name="covid"
@@ -124,10 +118,12 @@
         </div>
       </div>
       <div class="flex justify-between w-[130px] m-auto">
-        <button @click="back">
+        <button @click="previousPage">
           <img src="src/assets/back.svg" alt="back" />
         </button>
-        <button><img src="src/assets/next.svg" alt="next" /></button>
+        <button>
+          <img src="src/assets/next.svg" alt="next" />
+        </button>
       </div>
     </Form>
   </div>
@@ -169,11 +165,13 @@ export default {
   methods: {
     onSubmit(values) {
       console.log(values);
-
-      this.$router.push({ name: "vaccinationPage" });
+      this.nextPage();
     },
-    back() {
-      this.$router.push({ name: "personalInformation" });
+    nextPage() {
+      this.$store.dispatch("vaccinationPage");
+    },
+    previousPage() {
+      this.$store.dispatch("personalInformationPage");
     },
     updateHadCovid(e) {
       this.$store.state.hadCovid = e.target.value;

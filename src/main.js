@@ -2,7 +2,7 @@ import { createApp } from "vue";
 
 import { createStore } from "vuex";
 
-import router from "./router";
+import router from "@/router";
 
 // import Landing from "@/components/personalInformation.vue";
 // import Landing from "@/components/covidQuestions.vue";
@@ -37,6 +37,23 @@ const store = createStore({
       meetingOpinion: "",
       adviseOpinion: "",
     };
+  },
+  actions: {
+    personalInformationPage() {
+      router.push({ name: "personalInformation" });
+    },
+    covidQuestionsPage() {
+      router.push({ name: "covidQuestions" });
+    },
+    vaccinationPage() {
+      router.push({ name: "vaccinationPage" });
+    },
+    advisePage() {
+      router.push({ name: "advisePage" });
+    },
+    thanksPage() {
+      router.push({ name: "thanks" });
+    },
   },
 });
 

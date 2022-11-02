@@ -94,7 +94,10 @@ export default {
   methods: {
     onSubmit(values) {
       console.log(values);
-      this.$router.push({ name: "covidQuestions" });
+      this.nextPage();
+    },
+    nextPage() {
+      this.$store.dispatch("covidQuestionsPage");
     },
     updateName(e) {
       this.$store.state.name = e.target.value;

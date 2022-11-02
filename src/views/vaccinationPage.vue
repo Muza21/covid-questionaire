@@ -135,7 +135,7 @@
         </div>
       </div>
       <div class="flex justify-between w-[130px] m-auto">
-        <button @click="back">
+        <button @click="previousPage">
           <img src="src/assets/back.svg" alt="next" />
         </button>
         <button><img src="src/assets/next.svg" alt="next" /></button>
@@ -174,10 +174,13 @@ export default {
   methods: {
     onSubmit(values) {
       console.log(values);
-      this.$router.push({ name: "advisePage" });
+      this.nextPage();
     },
-    back() {
-      this.$router.push({ name: "covidQuestions" });
+    nextPage() {
+      this.$store.dispatch("advisePage");
+    },
+    previousPage() {
+      this.$store.dispatch("covidQuestionsPage");
     },
     updateHadVaccine(e) {
       this.$store.state.hadVaccine = e.target.value;

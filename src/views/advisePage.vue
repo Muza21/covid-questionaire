@@ -162,14 +162,14 @@
       </div>
       <div class="w-2/5">
         <button
-          @click="finish"
+          @click="nextPage"
           class="px-8 py-3 rounded-3xl bg-cyan-700 text-white font-bold"
         >
           დასრულება
         </button>
       </div>
       <div class="flex justify-between w-[130px] m-auto">
-        <button @click="back">
+        <button @click="previousPage">
           <img src="src/assets/back.svg" alt="next" />
         </button>
         <div></div>
@@ -213,12 +213,13 @@ export default {
   methods: {
     onSubmit(values) {
       console.log(values);
+      this.nextPage();
     },
-    finish() {
-      this.$router.push({ name: "thanks" });
+    nextPage() {
+      this.$store.dispatch("thanksPage");
     },
-    back() {
-      this.$router.push({ name: "vaccinationPage" });
+    previousPage() {
+      this.$store.dispatch("vaccinationPage");
     },
     updateMettingNumber(e) {
       this.$store.state.mettingNumber = e.target.value;
