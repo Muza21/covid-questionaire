@@ -67,7 +67,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapActions, mapState } from "vuex";
 import { Form, Field, ErrorMessage } from "vee-validate";
 
 export default {
@@ -94,11 +94,10 @@ export default {
   methods: {
     onSubmit(values) {
       console.log(values);
-      this.nextPage();
+      this.covidQuestionsPage();
     },
-    nextPage() {
-      this.$store.dispatch("covidQuestionsPage");
-    },
+    ...mapActions(["covidQuestionsPage"]),
+
     updateName(e) {
       this.$store.state.name = e.target.value;
     },

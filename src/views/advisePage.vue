@@ -161,15 +161,12 @@
         </div>
       </div>
       <div class="w-2/5">
-        <button
-          @click="nextPage"
-          class="px-8 py-3 rounded-3xl bg-cyan-700 text-white font-bold"
-        >
+        <button class="px-8 py-3 rounded-3xl bg-cyan-700 text-white font-bold">
           დასრულება
         </button>
       </div>
       <div class="flex justify-between w-[130px] m-auto">
-        <button @click="previousPage">
+        <button @click="vaccinationPage">
           <img src="src/assets/back.svg" alt="next" />
         </button>
         <div></div>
@@ -179,7 +176,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapActions, mapState } from "vuex";
 import { Form, Field, ErrorMessage } from "vee-validate";
 
 export default {
@@ -213,14 +210,9 @@ export default {
   methods: {
     onSubmit(values) {
       console.log(values);
-      this.nextPage();
+      this.thanksPage();
     },
-    nextPage() {
-      this.$store.dispatch("thanksPage");
-    },
-    previousPage() {
-      this.$store.dispatch("vaccinationPage");
-    },
+    ...mapActions(["vaccinationPage", "thanksPage"]),
     updateMettingNumber(e) {
       this.$store.state.mettingNumber = e.target.value;
     },

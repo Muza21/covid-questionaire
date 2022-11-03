@@ -118,7 +118,7 @@
         </div>
       </div>
       <div class="flex justify-between w-[130px] m-auto">
-        <button @click="previousPage">
+        <button @click="personalInformationPage">
           <img src="src/assets/back.svg" alt="back" />
         </button>
         <button>
@@ -130,7 +130,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapActions, mapState } from "vuex";
 import { Form, Field, ErrorMessage } from "vee-validate";
 
 export default {
@@ -165,14 +165,10 @@ export default {
   methods: {
     onSubmit(values) {
       console.log(values);
-      this.nextPage();
+      this.vaccinationPage();
     },
-    nextPage() {
-      this.$store.dispatch("vaccinationPage");
-    },
-    previousPage() {
-      this.$store.dispatch("personalInformationPage");
-    },
+    ...mapActions(["personalInformationPage", "vaccinationPage"]),
+
     updateHadCovid(e) {
       this.$store.state.hadCovid = e.target.value;
     },
