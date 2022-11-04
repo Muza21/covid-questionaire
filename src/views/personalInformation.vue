@@ -11,7 +11,7 @@
                 name="name"
                 type="name"
                 class="border-2 border-gray-800 py-3 px-4 w-[500px] bg-gray-200"
-                rules="required|min:2"
+                rules="required|min:2|georgian_text"
                 @input="updateName"
               />
               <ErrorMessage class="ml-4 text-orange-600" name="name" />
@@ -24,7 +24,7 @@
                 name="lastname"
                 type="text"
                 class="border-2 border-gray-800 py-3 px-4 w-[500px] bg-gray-200"
-                rules="required|min:2"
+                rules="required|min:2|georgian_text"
                 @input="updateLastName"
               />
               <ErrorMessage class="ml-4 text-orange-600" name="lastname" />

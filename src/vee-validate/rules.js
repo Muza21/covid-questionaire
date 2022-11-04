@@ -18,13 +18,18 @@ defineRule("antigen_number", (value) => {
   return true;
 });
 defineRule("date_format", (value) => {
-  console.log(value.match(/^$/));
   if (
     !value.match(/^$/) &&
     !value.match(
       /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2])\2))(?:20(?:19|2[0-2]))$|^(?:29(\/|-|\.)(?:0?2)\3(?:2020))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:20(?:19|2[0-2]))$/
     )
   ) {
+    return false;
+  }
+  return true;
+});
+defineRule("georgian_text", (value) => {
+  if (!value.match(/^[\u10D0-\u10F0]+$/)) {
     return false;
   }
   return true;
