@@ -155,17 +155,20 @@
               />
             </div>
           </div>
+          <div class="">
+            <button
+              class="px-8 py-3 rounded-3xl bg-cyan-700 text-white font-bold float-right"
+            >
+              დასრულება
+            </button>
+          </div>
         </div>
         <div>
           <img src="src/assets/bike2 2.png" alt="bike" />
         </div>
       </div>
-      <div class="w-2/5">
-        <button class="px-8 py-3 rounded-3xl bg-cyan-700 text-white font-bold">
-          დასრულება
-        </button>
-      </div>
-      <div class="flex justify-between w-[130px] m-auto">
+
+      <div class="flex justify-between w-[130px] m-auto py-32">
         <button @click="vaccinationPage">
           <img src="src/assets/back.svg" alt="next" />
         </button>

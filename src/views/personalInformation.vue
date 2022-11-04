@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-gray-200 px-[200px] pt-[100px]">
+  <div class="bg-gray-200 px-[200px] pt-[100px] h-screen">
     <ValidationForm @submit="onSubmit">
       <navigation-bar :id="pageNum"></navigation-bar>
       <div class="flex justify-between">

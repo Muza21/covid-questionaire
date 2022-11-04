@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-gray-200 px-[200px] pt-[100px]">
+  <div class="bg-gray-200 px-[200px] pt-[100px] h-screen">
     <ValidationForm @submit="onSubmit">
       <navigation-bar :id="pageNum"></navigation-bar>
 
@@ -80,12 +80,12 @@
               <div class="ml-5 mt-5">
                 <Field
                   name="testDate"
-                  :type="testDateType"
-                  onfocus="(this.type='date')"
+                  type="text"
                   class="border-2 border-gray-800 py-3 px-4 w-[500px] bg-gray-200"
-                  :placeholder="getTestDatestr"
+                  placeholder="რიცხვი"
                   @input="updateTestDate"
-                  rules="required"
+                  value=""
+                  rules="date_format"
                 />
                 <ErrorMessage class="ml-4 text-orange-600" name="testDate" />
               </div>
@@ -96,7 +96,8 @@
                   class="border-2 border-gray-800 py-3 px-4 w-[500px] bg-gray-200"
                   placeholder="ანტისხეულების რაოდენობა"
                   @input="updateCovidAntigen"
-                  rules="required|antigen_number"
+                  value=""
+                  rules="antigen_number"
                 />
                 <ErrorMessage
                   class="ml-4 text-orange-600"
@@ -112,12 +113,12 @@
               <div class="ml-5 mt-5">
                 <Field
                   name="covidDate"
-                  :type="covidDateType"
-                  onfocus="(this.type='date')"
+                  type="text"
                   class="border-2 border-gray-800 py-3 px-4 w-[500px] bg-gray-200"
                   @input="updateCovidDate"
-                  :placeholder="getCovidDatestr"
-                  rules="required"
+                  placeholder="დდ/თთ/წწ"
+                  value=""
+                  rules="required|date_format"
                 />
                 <ErrorMessage class="ml-4 text-orange-600" name="covidDate" />
               </div>
@@ -148,8 +149,6 @@ export default {
   data() {
     return {
       pageNum: this.id,
-      testDateType: "text",
-      covidDateType: "text",
     };
   },
   props: {
@@ -173,14 +172,6 @@ export default {
       "covidAntigen",
       "covidDate",
     ]),
-    getTestDatestr() {
-      let s = "რიცხვი";
-      return s;
-    },
-    getCovidDatestr() {
-      let s = "დდ/თთ/წწ";
-      return s;
-    },
   },
 
   methods: {
