@@ -2,16 +2,11 @@ import { createApp } from "vue";
 
 import { createStore } from "vuex";
 
-// import Landing from "@/components/personalInformation.vue";
-// import Landing from "@/components/covidQuestions.vue";
-// import Landing from "@/components/vaccinationPage.vue";
-import Landing from "@/components/advisePage.vue";
+import router from "@/router";
 
 import NavigationBar from "@/components/NavigationBar.vue";
-// import App from "@/App.vue";
+import App from "@/App.vue";
 import "@/style.css";
-
-// const app = createApp(App);
 
 const store = createStore({
   state() {
@@ -36,9 +31,28 @@ const store = createStore({
       adviseOpinion: "",
     };
   },
+  actions: {
+    personalInformationPage() {
+      router.push({ name: "personalInformation" });
+    },
+    covidQuestionsPage() {
+      router.push({ name: "covidQuestions" });
+    },
+    vaccinationPage() {
+      router.push({ name: "vaccinationPage" });
+    },
+    advisePage() {
+      router.push({ name: "advisePage" });
+    },
+    thanksPage() {
+      router.push({ name: "thanks" });
+    },
+  },
 });
 
-const app = createApp(Landing).use(store);
+const app = createApp(App).use(store);
+
+app.use(router);
 
 app.component("navigation-bar", NavigationBar);
 

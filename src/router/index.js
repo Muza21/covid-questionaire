@@ -1,23 +1,54 @@
 import { createRouter, createWebHistory } from "vue-router";
-import HomeView from "../views/HomeView.vue";
+import landingPage from "@/views/landingPage.vue";
+import personalInformation from "@/views/personalInformation.vue";
+import covidQuestions from "@/views/covidQuestions.vue";
+import vaccinationPage from "@/views/vaccinationPage.vue";
+import advisePage from "@/views/advisePage.vue";
+import thankYou from "@/views/thankYou.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: "/",
-      name: "home",
-      component: HomeView,
+      name: "landingPage",
+      component: landingPage,
     },
     {
-      path: "/about",
-      name: "about",
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import("../views/AboutView.vue"),
+      path: "/personal-information",
+      name: "personalInformation",
+      component: personalInformation,
+      props: { id: "1" },
+    },
+    {
+      path: "/covid-questions",
+      name: "covidQuestions",
+      component: covidQuestions,
+      props: { id: "2" },
+    },
+    {
+      path: "/vaccination",
+      name: "vaccinationPage",
+      component: vaccinationPage,
+      props: { id: "3" },
+    },
+    {
+      path: "/advise",
+      name: "advisePage",
+      component: advisePage,
+      props: { id: "4" },
+    },
+    {
+      path: "/thanks",
+      name: "thanks",
+      component: thankYou,
     },
   ],
+  computed: {
+    currentRouteName() {
+      return this.router.name;
+    },
+  },
 });
 
 export default router;
