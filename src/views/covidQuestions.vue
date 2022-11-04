@@ -1,6 +1,6 @@
 <template>
   <div class="bg-gray-200 px-[200px] pt-[100px]">
-    <Form @submit="onSubmit">
+    <ValidationForm @submit="onSubmit">
       <navigation-bar :id="pageNum"></navigation-bar>
 
       <div class="text-xl flex justify-between">
@@ -14,8 +14,9 @@
                 <Field
                   type="radio"
                   name="covid"
-                  @input="updateHadCovid"
                   value="yes"
+                  @input="updateHadCovid"
+                  rules="required"
                 />
                 <label>კი</label>
               </div>
@@ -39,7 +40,7 @@
                 />
                 <label>ახლა მაქვს</label>
               </div>
-              <ErrorMessage name="covid" />
+              <ErrorMessage class="ml-4 text-orange-600" name="covid" />
             </div>
           </div>
           <div v-if="hadCovid === 'yes'">
@@ -52,8 +53,9 @@
                   <Field
                     type="radio"
                     name="test"
-                    @input="updateTestDone"
                     value="yes"
+                    @input="updateTestDone"
+                    rules="required"
                   />
                   <label>კი</label>
                 </div>
@@ -66,7 +68,7 @@
                   />
                   <label>არა</label>
                 </div>
-                <ErrorMessage name="test" />
+                <ErrorMessage class="ml-4 text-orange-600" name="test" />
               </div>
             </div>
 
@@ -78,12 +80,14 @@
               <div class="ml-5 mt-5">
                 <Field
                   name="testDate"
-                  type="text"
+                  :type="testDateType"
+                  onfocus="(this.type='date')"
                   class="border-2 border-gray-800 py-3 px-4 w-[500px] bg-gray-200"
-                  placeholder="რიცხვი"
+                  :placeholder="getTestDatestr"
                   @input="updateTestDate"
+                  rules="required"
                 />
-                <ErrorMessage name="testDate" />
+                <ErrorMessage class="ml-4 text-orange-600" name="testDate" />
               </div>
               <div class="ml-5 mt-5">
                 <Field
@@ -92,8 +96,12 @@
                   class="border-2 border-gray-800 py-3 px-4 w-[500px] bg-gray-200"
                   placeholder="ანტისხეულების რაოდენობა"
                   @input="updateCovidAntigen"
+                  rules="required|antigen_number"
                 />
-                <ErrorMessage name="covidAntigen" />
+                <ErrorMessage
+                  class="ml-4 text-orange-600"
+                  name="covidAntigen"
+                />
               </div>
             </div>
             <div v-else-if="testDone === 'no'" class="mt-5">
@@ -104,11 +112,14 @@
               <div class="ml-5 mt-5">
                 <Field
                   name="covidDate"
-                  type="date"
+                  :type="covidDateType"
+                  onfocus="(this.type='date')"
                   class="border-2 border-gray-800 py-3 px-4 w-[500px] bg-gray-200"
                   @input="updateCovidDate"
+                  :placeholder="getCovidDatestr"
+                  rules="required"
                 />
-                <ErrorMessage name="covidDate" />
+                <ErrorMessage class="ml-4 text-orange-600" name="covidDate" />
               </div>
             </div>
           </div>
@@ -125,18 +136,20 @@
           <img src="src/assets/next.svg" alt="next" />
         </button>
       </div>
-    </Form>
+    </ValidationForm>
   </div>
 </template>
 
 <script>
 import { mapActions, mapState } from "vuex";
-import { Form, Field, ErrorMessage } from "vee-validate";
+import { Form as ValidationForm, Field, ErrorMessage } from "vee-validate";
 
 export default {
   data() {
     return {
       pageNum: this.id,
+      testDateType: "text",
+      covidDateType: "text",
     };
   },
   props: {
@@ -148,7 +161,7 @@ export default {
 
   components: {
     Field,
-    Form,
+    ValidationForm,
     ErrorMessage,
   },
 
@@ -160,6 +173,14 @@ export default {
       "covidAntigen",
       "covidDate",
     ]),
+    getTestDatestr() {
+      let s = "რიცხვი";
+      return s;
+    },
+    getCovidDatestr() {
+      let s = "დდ/თთ/წწ";
+      return s;
+    },
   },
 
   methods: {

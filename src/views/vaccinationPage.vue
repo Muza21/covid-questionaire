@@ -1,6 +1,6 @@
 <template>
   <div class="bg-gray-200 px-[200px] pt-[100px]">
-    <Form @submit="onSubmit">
+    <ValidationForm @submit="onSubmit">
       <navigation-bar :id="pageNum"></navigation-bar>
 
       <div class="text-xl flex justify-between">
@@ -12,8 +12,9 @@
                 <Field
                   type="radio"
                   name="vaccine"
-                  @input="updateHadVaccine"
                   value="yes"
+                  @input="updateHadVaccine"
+                  rules="required"
                 />
                 <label>კი</label>
               </div>
@@ -26,7 +27,7 @@
                 />
                 <label>არა</label>
               </div>
-              <ErrorMessage name="vaccine" />
+              <ErrorMessage class="ml-4 text-orange-600" name="vaccine" />
             </div>
           </div>
 
@@ -40,6 +41,7 @@
                     name="stage"
                     @input="updateStageLevel"
                     value="1"
+                    rules="required"
                   />
                   <label>პირველი დოზა და დარეგისტრირებული ვარ მეორეზე</label>
                 </div>
@@ -61,7 +63,7 @@
                   />
                   <label>პირველი დოზა და არ დავრეგისტრირებულვარ მეორეზე</label>
                 </div>
-                <ErrorMessage name="stage" />
+                <ErrorMessage class="ml-4 text-orange-600" name="stage" />
               </div>
             </div>
             <!-- if the last option is selected -->
@@ -84,8 +86,9 @@
                   <Field
                     type="radio"
                     name="plan"
-                    @input="updatePlanAhead"
                     value="1"
+                    @input="updatePlanAhead"
+                    rules="required"
                   />
                   <label>დარეგისტრირებული ვარ და ველოდები რიცხვს</label>
                 </div>
@@ -107,7 +110,7 @@
                   />
                   <label>გადატანილი მაქვს და ვგეგმავ აცრას</label>
                 </div>
-                <ErrorMessage name="plan" />
+                <ErrorMessage class="ml-4 text-orange-600" name="plan" />
               </div>
             </div>
             <!-- if second option is selected -->
@@ -140,13 +143,13 @@
         </button>
         <button><img src="src/assets/next.svg" alt="next" /></button>
       </div>
-    </Form>
+    </ValidationForm>
   </div>
 </template>
 
 <script>
 import { mapActions, mapState } from "vuex";
-import { Form, Field, ErrorMessage } from "vee-validate";
+import { Form as ValidationForm, Field, ErrorMessage } from "vee-validate";
 
 export default {
   data() {
@@ -163,7 +166,7 @@ export default {
 
   components: {
     Field,
-    Form,
+    ValidationForm,
     ErrorMessage,
   },
 

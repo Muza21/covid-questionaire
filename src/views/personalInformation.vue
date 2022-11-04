@@ -1,8 +1,7 @@
 <template>
   <div class="bg-gray-200 px-[200px] pt-[100px]">
-    <Form @submit="onSubmit">
+    <ValidationForm @submit="onSubmit">
       <navigation-bar :id="pageNum"></navigation-bar>
-
       <div class="flex justify-between">
         <div class="mt-8">
           <div>
@@ -12,10 +11,10 @@
                 name="name"
                 type="name"
                 class="border-2 border-gray-800 py-3 px-4 w-[500px] bg-gray-200"
-                rules=""
+                rules="required|min:2"
                 @input="updateName"
               />
-              <ErrorMessage name="name" />
+              <ErrorMessage class="ml-4 text-orange-600" name="name" />
             </div>
           </div>
           <div class="mt-12">
@@ -25,10 +24,10 @@
                 name="lastname"
                 type="text"
                 class="border-2 border-gray-800 py-3 px-4 w-[500px] bg-gray-200"
-                rules=""
+                rules="required|min:2"
                 @input="updateLastName"
               />
-              <ErrorMessage name="lastname" />
+              <ErrorMessage class="ml-4 text-orange-600" name="lastname" />
             </div>
           </div>
           <div class="mt-12">
@@ -38,10 +37,10 @@
                 name="email"
                 type="email"
                 class="border-2 border-gray-800 py-3 px-4 w-[500px] bg-gray-200"
-                rules=""
+                rules="required|email|redberry_email"
                 @input="updateEmail"
               />
-              <ErrorMessage name="email" />
+              <ErrorMessage class="ml-4 text-orange-600" name="email" />
             </div>
           </div>
 
@@ -62,13 +61,13 @@
           <img src="src/assets/next.svg" alt="next" />
         </button>
       </div>
-    </Form>
+    </ValidationForm>
   </div>
 </template>
 
 <script>
 import { mapActions, mapState } from "vuex";
-import { Form, Field, ErrorMessage } from "vee-validate";
+import { Form as ValidationForm, Field, ErrorMessage } from "vee-validate";
 
 export default {
   data() {
@@ -84,7 +83,7 @@ export default {
   },
   components: {
     Field,
-    Form,
+    ValidationForm,
     ErrorMessage,
   },
   computed: {
@@ -100,6 +99,7 @@ export default {
 
     updateName(e) {
       this.$store.state.name = e.target.value;
+      console.log(this.name);
     },
     updateLastName(e) {
       this.$store.state.lastname = e.target.value;

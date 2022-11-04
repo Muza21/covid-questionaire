@@ -1,54 +1,13 @@
 import { createApp } from "vue";
 
-import { createStore } from "vuex";
-
 import router from "@/router";
-
+import store from "@/store/store.js";
 import NavigationBar from "@/components/NavigationBar.vue";
 import App from "@/App.vue";
 import "@/style.css";
 
-const store = createStore({
-  state() {
-    return {
-      name: "",
-      lastname: "",
-      email: "",
-
-      hadCovid: "",
-      testDone: "",
-      testDate: "",
-      covidAntigen: "",
-      covidDate: "",
-
-      hadVaccine: "",
-      stageLevel: "",
-      planAhead: "",
-
-      mettingNumber: "",
-      officeWork: "",
-      meetingOpinion: "",
-      adviseOpinion: "",
-    };
-  },
-  actions: {
-    personalInformationPage() {
-      router.push({ name: "personalInformation" });
-    },
-    covidQuestionsPage() {
-      router.push({ name: "covidQuestions" });
-    },
-    vaccinationPage() {
-      router.push({ name: "vaccinationPage" });
-    },
-    advisePage() {
-      router.push({ name: "advisePage" });
-    },
-    thanksPage() {
-      router.push({ name: "thanks" });
-    },
-  },
-});
+import "@/vee-validate/rules.js";
+import "@/vee-validate/messages.js";
 
 const app = createApp(App).use(store);
 

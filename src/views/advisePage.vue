@@ -1,6 +1,6 @@
 <template>
   <div class="bg-gray-200 px-[200px] pt-[100px]">
-    <Form @submit="onSubmit">
+    <ValidationForm @submit="onSubmit">
       <navigation-bar :id="pageNum"></navigation-bar>
 
       <div class="flex justify-between text-xl">
@@ -30,6 +30,7 @@
                   name="office"
                   @input="updateMettingNumber"
                   value="1"
+                  rules="required"
                 />
                 <label>კვირაში ორჯერ</label>
               </div>
@@ -61,7 +62,7 @@
                 />
                 <label>თვეში ერთხელი</label>
               </div>
-              <ErrorMessage name="office" />
+              <ErrorMessage class="ml-4 text-orange-600" name="office" />
             </div>
           </div>
           <div class="mt-8">
@@ -75,6 +76,7 @@
                   name="week"
                   @input="updateOfficeWork"
                   value="0"
+                  rules="required"
                 />
                 <label>0</label>
               </div>
@@ -123,37 +125,35 @@
                 />
                 <label>5</label>
               </div>
-              <ErrorMessage name="week" />
+              <ErrorMessage class="ml-4 text-orange-600" name="week" />
             </div>
           </div>
           <div class="mt-8">
             <label class="font-bold" for="meetingOpinion">
-              რას ფიქრობთ ფიზიკურ შეკრებებზე?*
+              რას ფიქრობთ ფიზიკურ შეკრებებზე?
             </label>
             <div class="mt-2">
               <Field
-                type="text"
+                as="textarea"
                 name="meetingOpinion"
                 class="border-2 border-gray-800 p-4 w-[600px] h-44 bg-gray-200"
                 @input="updateMeetingOpinion"
               />
             </div>
-            <ErrorMessage name="meetingOpinion" />
           </div>
           <div class="my-8">
             <label class="font-bold" for="adviseOpinion">
               რას ფიქრობ არსებულ გარემოზე: რა მოგწონს, რას დაამატებდი, რას
-              შეცვლიდი?*
+              შეცვლიდი?
             </label>
             <div class="mt-2">
               <Field
-                type="text"
+                as="textarea"
                 name="adviseOpinion"
                 class="border-2 border-gray-800 p-4 w-[600px] h-44 bg-gray-200"
                 @input="updateAdviseOpinion"
               />
             </div>
-            <ErrorMessage name="adviseOpinion" />
           </div>
         </div>
         <div>
@@ -171,13 +171,13 @@
         </button>
         <div></div>
       </div>
-    </Form>
+    </ValidationForm>
   </div>
 </template>
 
 <script>
 import { mapActions, mapState } from "vuex";
-import { Form, Field, ErrorMessage } from "vee-validate";
+import { Form as ValidationForm, Field, ErrorMessage } from "vee-validate";
 
 export default {
   data() {
@@ -194,7 +194,7 @@ export default {
 
   components: {
     Field,
-    Form,
+    ValidationForm,
     ErrorMessage,
   },
 
