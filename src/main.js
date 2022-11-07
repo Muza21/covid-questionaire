@@ -1,7 +1,7 @@
 import { createApp } from "vue";
 
 import router from "@/router";
-import store from "@/store/store.js";
+import store from "@/store/index.js";
 import NavigationBar from "@/components/NavigationBar.vue";
 import App from "@/App.vue";
 import "@/style.css";
