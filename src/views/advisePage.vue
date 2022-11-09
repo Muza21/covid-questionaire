@@ -191,7 +191,7 @@ export default {
     };
   },
   beforeMount() {
-    this.initialiseStore();
+    this.$store.commit("initialiseStore");
   },
   props: {
     id: {
@@ -232,12 +232,11 @@ export default {
       this.thanksPage();
     },
     ...mapActions(["vaccinationPage", "thanksPage"]),
-    ...mapMutations([
+    ...mapMutations("advise", [
       "setMeetingNumber",
       "setOfficeWork",
       "setMeetingOpinion",
       "setAdviseOpinion",
-      "initialiseStore",
     ]),
     updateMeetingNumber(e) {
       this.setMeetingNumber(e.target.value);

@@ -1,3 +1,5 @@
+import personalMutations from "@/store/modules/personal-information/mutations.js";
+
 export default {
   namespaced: true,
   state() {
@@ -7,4 +9,5 @@ export default {
       email: "",
     };
   },
+  mutations: personalMutations,
 };

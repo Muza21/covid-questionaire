@@ -79,7 +79,7 @@ export default {
     };
   },
   beforeMount() {
-    this.initialiseStore();
+    this.$store.commit("initialiseStore");
     console.log(this.$store.state.name);
   },
   props: {
@@ -103,7 +103,7 @@ export default {
       this.covidQuestionsPage();
     },
     ...mapActions(["covidQuestionsPage"]),
-    ...mapMutations(["setName", "setLastName", "setEmail", "initialiseStore"]),
+    ...mapMutations("personal", ["setName", "setLastName", "setEmail"]),
     updateName(e) {
       this.setName(e.target.value);
     },

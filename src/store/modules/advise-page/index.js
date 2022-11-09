@@ -1,3 +1,5 @@
+import adviseMutations from "@/store/modules/advise-page/mutations.js";
+
 export default {
   namespaced: true,
   state() {
@@ -8,4 +10,5 @@ export default {
       adviseOpinion: "",
     };
   },
+  mutations: adviseMutations,
 };

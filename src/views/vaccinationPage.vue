@@ -158,7 +158,7 @@ export default {
     };
   },
   beforeMount() {
-    this.initialiseStore();
+    this.$store.commit("initialiseStore");
   },
   props: {
     id: {
@@ -174,7 +174,7 @@ export default {
   },
 
   computed: {
-    ...mapState(["hadVaccine", "stageLevel", "planAhead"]),
+    ...mapState("vaccine", ["hadVaccine", "stageLevel", "planAhead"]),
   },
 
   methods: {
@@ -183,11 +183,10 @@ export default {
       this.advisePage();
     },
     ...mapActions(["covidQuestionsPage", "advisePage"]),
-    ...mapMutations([
+    ...mapMutations("vaccine", [
       "setHadVaccine",
       "setStageLevel",
       "setPlanAhead",
-      "initialiseStore",
     ]),
     updateHadVaccine(e) {
       this.setHadVaccine(e.target.value);

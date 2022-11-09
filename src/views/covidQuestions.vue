@@ -15,6 +15,7 @@
                   type="radio"
                   name="covid"
                   value="yes"
+                  :checked="true"
                   @input="updateHadCovid"
                   rules="required"
                 />
@@ -152,7 +153,7 @@ export default {
     };
   },
   beforeMount() {
-    this.initialiseStore();
+    this.$store.commit("initialiseStore");
   },
   props: {
     id: {
@@ -168,7 +169,7 @@ export default {
   },
 
   computed: {
-    ...mapState([
+    ...mapState("covid", [
       "hadCovid",
       "testDone",
       "testDate",
@@ -183,13 +184,12 @@ export default {
       this.vaccinationPage();
     },
     ...mapActions(["personalInformationPage", "vaccinationPage"]),
-    ...mapMutations([
+    ...mapMutations("covid", [
       "setHadCovid",
       "setTestDone",
       "setTestDate",
       "setCovidAntigen",
       "setCovidDate",
-      "initialiseStore",
     ]),
     updateHadCovid(e) {
       this.setHadCovid(e.target.value);
