@@ -191,7 +191,7 @@ export default {
     };
   },
   beforeMount() {
-    this.$store.commit("initialiseStore");
+    this.initialiseStore();
   },
   props: {
     id: {
@@ -218,6 +218,17 @@ export default {
   methods: {
     onSubmit(values) {
       console.log(values);
+      fetch("https://covid19.devtest.ge/api/create", {
+        method: "POST",
+        "Content-Type": "application/json",
+        body: JSON.stringify(localStorage.getItem("store")),
+      })
+        .then((data) => {
+          console.log("Success:", data);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
       this.thanksPage();
     },
     ...mapActions(["vaccinationPage", "thanksPage"]),
@@ -226,6 +237,7 @@ export default {
       "setOfficeWork",
       "setMeetingOpinion",
       "setAdviseOpinion",
+      "initialiseStore",
     ]),
     updateMeetingNumber(e) {
       this.setMeetingNumber(e.target.value);
