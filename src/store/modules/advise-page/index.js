@@ -2,7 +2,7 @@ export default {
   namespaced: true,
   state() {
     return {
-      mettingNumber: "",
+      meetingNumber: "",
       officeWork: "",
       meetingOpinion: "",
       adviseOpinion: "",

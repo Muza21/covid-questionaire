@@ -84,7 +84,7 @@
                   class="border-2 border-gray-800 py-3 px-4 w-[500px] bg-gray-200"
                   placeholder="რიცხვი"
                   @input="updateTestDate"
-                  value=""
+                  :value="testDate"
                   rules="date_format"
                 />
                 <ErrorMessage class="ml-4 text-orange-600" name="testDate" />
@@ -96,7 +96,7 @@
                   class="border-2 border-gray-800 py-3 px-4 w-[500px] bg-gray-200"
                   placeholder="ანტისხეულების რაოდენობა"
                   @input="updateCovidAntigen"
-                  value=""
+                  :value="covidAntigen"
                   rules="antigen_number"
                 />
                 <ErrorMessage
@@ -117,7 +117,7 @@
                   class="border-2 border-gray-800 py-3 px-4 w-[500px] bg-gray-200"
                   @input="updateCovidDate"
                   placeholder="დდ/თთ/წწ"
-                  value=""
+                  :value="covidDate"
                   rules="required|date_format"
                 />
                 <ErrorMessage class="ml-4 text-orange-600" name="covidDate" />
@@ -142,7 +142,7 @@
 </template>
 
 <script>
-import { mapActions, mapState } from "vuex";
+import { mapActions, mapMutations, mapState } from "vuex";
 import { Form as ValidationForm, Field, ErrorMessage } from "vee-validate";
 
 export default {
@@ -150,6 +150,9 @@ export default {
     return {
       pageNum: this.id,
     };
+  },
+  beforeMount() {
+    this.initialiseStore();
   },
   props: {
     id: {
@@ -180,21 +183,28 @@ export default {
       this.vaccinationPage();
     },
     ...mapActions(["personalInformationPage", "vaccinationPage"]),
-
+    ...mapMutations([
+      "setHadCovid",
+      "setTestDone",
+      "setTestDate",
+      "setCovidAntigen",
+      "setCovidDate",
+      "initialiseStore",
+    ]),
     updateHadCovid(e) {
-      this.$store.state.hadCovid = e.target.value;
+      this.setHadCovid(e.target.value);
     },
     updateTestDone(e) {
-      this.$store.state.testDone = e.target.value;
+      this.setTestDone(e.target.value);
     },
     updateTestDate(e) {
-      this.$store.state.testDate = e.target.value;
+      this.setTestDate(e.target.value);
     },
     updateCovidAntigen(e) {
-      this.$store.state.covidAntigen = e.target.value;
+      this.setCovidAntigen(e.target.value);
     },
     updateCovidDate(e) {
-      this.$store.state.covidDate = e.target.value;
+      this.setCovidDate(e.target.value);
     },
   },
 };

@@ -148,7 +148,7 @@
 </template>
 
 <script>
-import { mapActions, mapState } from "vuex";
+import { mapActions, mapMutations, mapState } from "vuex";
 import { Form as ValidationForm, Field, ErrorMessage } from "vee-validate";
 
 export default {
@@ -156,6 +156,9 @@ export default {
     return {
       pageNum: this.id,
     };
+  },
+  beforeMount() {
+    this.initialiseStore();
   },
   props: {
     id: {
@@ -180,14 +183,20 @@ export default {
       this.advisePage();
     },
     ...mapActions(["covidQuestionsPage", "advisePage"]),
+    ...mapMutations([
+      "setHadVaccine",
+      "setStageLevel",
+      "setPlanAhead",
+      "initialiseStore",
+    ]),
     updateHadVaccine(e) {
-      this.$store.state.hadVaccine = e.target.value;
+      this.setHadVaccine(e.target.value);
     },
     updateStageLevel(e) {
-      this.$store.state.stageLevel = e.target.value;
+      this.setStageLevel(e.target.value);
     },
     updatePlanAhead(e) {
-      this.$store.state.planAhead = e.target.value;
+      this.setPlanAhead(e.target.value);
     },
   },
 };

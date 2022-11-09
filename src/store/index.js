@@ -16,11 +16,11 @@ const store = createStore({
   },
 
   actions: rootActions,
-  mutation: rootMutations,
-  getters: {
-    getMeetingOpinion(state) {
-      return state.officeWork;
-    },
-  },
+  mutations: rootMutations,
 });
+
+store.subscribe((mutation, state) => {
+  localStorage.setItem("store", JSON.stringify(state));
+});
+
 export default store;

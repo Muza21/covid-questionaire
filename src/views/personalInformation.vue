@@ -10,6 +10,7 @@
               <Field
                 name="name"
                 type="name"
+                :value="name"
                 class="border-2 border-gray-800 py-3 px-4 w-[500px] bg-gray-200"
                 rules="required|min:2|georgian_text"
                 @input="updateName"
@@ -23,6 +24,7 @@
               <Field
                 name="lastname"
                 type="text"
+                :value="lastname"
                 class="border-2 border-gray-800 py-3 px-4 w-[500px] bg-gray-200"
                 rules="required|min:2|georgian_text"
                 @input="updateLastName"
@@ -36,6 +38,7 @@
               <Field
                 name="email"
                 type="email"
+                :value="email"
                 class="border-2 border-gray-800 py-3 px-4 w-[500px] bg-gray-200"
                 rules="required|email|redberry_email"
                 @input="updateEmail"
@@ -66,7 +69,7 @@
 </template>
 
 <script>
-import { mapActions, mapState } from "vuex";
+import { mapActions, mapMutations, mapState } from "vuex";
 import { Form as ValidationForm, Field, ErrorMessage } from "vee-validate";
 
 export default {
@@ -74,6 +77,10 @@ export default {
     return {
       pageNum: this.id,
     };
+  },
+  beforeMount() {
+    this.initialiseStore();
+    console.log(this.$store.state.name);
   },
   props: {
     id: {
@@ -96,16 +103,16 @@ export default {
       this.covidQuestionsPage();
     },
     ...mapActions(["covidQuestionsPage"]),
-
+    ...mapMutations(["setName", "setLastName", "setEmail", "initialiseStore"]),
     updateName(e) {
-      this.$store.state.name = e.target.value;
-      console.log(this.name);
+      this.setName(e.target.value);
     },
+
     updateLastName(e) {
-      this.$store.state.lastname = e.target.value;
+      this.setLastName(e.target.value);
     },
     updateEmail(e) {
-      this.$store.state.email = e.target.value;
+      this.setEmail(e.target.value);
     },
   },
 };

@@ -28,7 +28,7 @@
                 <Field
                   type="radio"
                   name="office"
-                  @input="updateMettingNumber"
+                  @input="updateMeetingNumber"
                   value="1"
                   rules="required"
                 />
@@ -38,7 +38,7 @@
                 <Field
                   type="radio"
                   name="office"
-                  @input="updateMettingNumber"
+                  @input="updateMeetingNumber"
                   value="2"
                 />
                 <label>კვირაში ერთხელი</label>
@@ -47,7 +47,7 @@
                 <Field
                   type="radio"
                   name="office"
-                  @input="updateMettingNumber"
+                  @input="updateMeetingNumber"
                   value="3"
                 />
                 <label>ორ კვირაში ერთხელი</label>
@@ -57,7 +57,7 @@
                 <Field
                   type="radio"
                   name="office"
-                  @input="updateMettingNumber"
+                  @input="updateMeetingNumber"
                   value="4"
                 />
                 <label>თვეში ერთხელი</label>
@@ -137,6 +137,7 @@
                 as="textarea"
                 name="meetingOpinion"
                 class="border-2 border-gray-800 p-4 w-[600px] h-44 bg-gray-200"
+                :value="meetingOpinion"
                 @input="updateMeetingOpinion"
               />
             </div>
@@ -151,6 +152,7 @@
                 as="textarea"
                 name="adviseOpinion"
                 class="border-2 border-gray-800 p-4 w-[600px] h-44 bg-gray-200"
+                :value="adviseOpinion"
                 @input="updateAdviseOpinion"
               />
             </div>
@@ -179,7 +181,7 @@
 </template>
 
 <script>
-import { mapActions, mapState } from "vuex";
+import { mapActions, mapMutations, mapState } from "vuex";
 import { Form as ValidationForm, Field, ErrorMessage } from "vee-validate";
 
 export default {
@@ -187,6 +189,9 @@ export default {
     return {
       pageNum: this.id,
     };
+  },
+  beforeMount() {
+    this.$store.commit("initialiseStore");
   },
   props: {
     id: {
@@ -203,7 +208,7 @@ export default {
 
   computed: {
     ...mapState([
-      "mettingNumber",
+      "meetingNumber",
       "officeWork",
       "meetingOpinion",
       "adviseOpinion",
@@ -216,17 +221,23 @@ export default {
       this.thanksPage();
     },
     ...mapActions(["vaccinationPage", "thanksPage"]),
-    updateMettingNumber(e) {
-      this.$store.state.mettingNumber = e.target.value;
+    ...mapMutations([
+      "setMeetingNumber",
+      "setOfficeWork",
+      "setMeetingOpinion",
+      "setAdviseOpinion",
+    ]),
+    updateMeetingNumber(e) {
+      this.setMeetingNumber(e.target.value);
     },
     updateOfficeWork(e) {
-      this.$store.state.officeWork = e.target.value;
+      this.setOfficeWork(e.target.value);
     },
     updateMeetingOpinion(e) {
-      this.$store.state.meetingOpinion = e.target.value;
+      this.setMeetingOpinion(e.target.value);
     },
     updateAdviseOpinion(e) {
-      this.$store.state.adviseOpinion = e.target.value;
+      this.setAdviseOpinion(e.target.value);
     },
   },
 };
