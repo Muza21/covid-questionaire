@@ -157,9 +157,6 @@ export default {
       pageNum: this.id,
     };
   },
-  beforeMount() {
-    this.$store.commit("initialiseStore");
-  },
   props: {
     id: {
       type: String,

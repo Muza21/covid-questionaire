@@ -12,32 +12,34 @@
             <div class="ml-5">
               <div class="mt-2">
                 <Field
-                  type="radio"
                   name="covid"
+                  type="radio"
                   value="yes"
-                  :checked="true"
                   @input="updateHadCovid"
-                  rules="required"
+                  :checked="hadCovid === 'yes'"
                 />
+
                 <label>კი</label>
               </div>
 
               <div class="mt-2">
                 <Field
-                  type="radio"
                   name="covid"
-                  @input="updateHadCovid"
+                  type="radio"
                   value="no"
+                  @input="updateHadCovid"
+                  :checked="hadCovid === 'no'"
                 />
                 <label>არა</label>
               </div>
 
               <div class="my-2">
                 <Field
-                  type="radio"
                   name="covid"
-                  @input="updateHadCovid"
+                  type="radio"
                   value="now"
+                  @input="updateHadCovid"
+                  :checked="hadCovid === 'now'"
                 />
                 <label>ახლა მაქვს</label>
               </div>
@@ -52,20 +54,21 @@
               <div class="ml-5 my-2">
                 <div class="mb-2">
                   <Field
-                    type="radio"
                     name="test"
+                    type="radio"
                     value="yes"
                     @input="updateTestDone"
-                    rules="required"
+                    :checked="testDone === 'yes'"
                   />
                   <label>კი</label>
                 </div>
                 <div class="my-2">
                   <Field
-                    type="radio"
                     name="test"
-                    @input="updateTestDone"
+                    type="radio"
                     value="no"
+                    @input="updateTestDone"
+                    :checked="testDone === 'no'"
                   />
                   <label>არა</label>
                 </div>
@@ -152,9 +155,6 @@ export default {
       pageNum: this.id,
     };
   },
-  beforeMount() {
-    this.$store.commit("initialiseStore");
-  },
   props: {
     id: {
       type: String,
@@ -193,9 +193,21 @@ export default {
     ]),
     updateHadCovid(e) {
       this.setHadCovid(e.target.value);
+      if (this.hadCovid !== "yes") {
+        this.setTestDone("");
+        this.setTestDate("");
+        this.setCovidAntigen("");
+        this.setCovidDate("");
+      }
     },
     updateTestDone(e) {
       this.setTestDone(e.target.value);
+      if (this.testDone === "yes") {
+        this.setCovidDate("");
+      } else if (this.testDone === "no") {
+        this.setTestDate("");
+        this.setCovidAntigen("");
+      }
     },
     updateTestDate(e) {
       this.setTestDate(e.target.value);

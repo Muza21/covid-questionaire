@@ -19,8 +19,4 @@ const store = createStore({
   mutations: rootMutations,
 });
 
-store.subscribe((mutation, state) => {
-  localStorage.setItem("store", JSON.stringify(state));
-});
-
 export default store;

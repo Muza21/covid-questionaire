@@ -29,7 +29,7 @@
                   type="radio"
                   name="office"
                   @input="updateMeetingNumber"
-                  value="1"
+                  value="twice_a_week"
                   rules="required"
                 />
                 <label>კვირაში ორჯერ</label>
@@ -39,7 +39,7 @@
                   type="radio"
                   name="office"
                   @input="updateMeetingNumber"
-                  value="2"
+                  value="once_a_week"
                 />
                 <label>კვირაში ერთხელი</label>
               </div>
@@ -48,7 +48,7 @@
                   type="radio"
                   name="office"
                   @input="updateMeetingNumber"
-                  value="3"
+                  value="once_in_two_weeks"
                 />
                 <label>ორ კვირაში ერთხელი</label>
               </div>
@@ -58,7 +58,7 @@
                   type="radio"
                   name="office"
                   @input="updateMeetingNumber"
-                  value="4"
+                  value="once_a_month"
                 />
                 <label>თვეში ერთხელი</label>
               </div>
@@ -103,7 +103,7 @@
                   type="radio"
                   name="week"
                   @input="updateOfficeWork"
-                  value="03"
+                  value="3"
                 />
                 <label>3</label>
               </div>
@@ -190,9 +190,6 @@ export default {
       pageNum: this.id,
     };
   },
-  beforeMount() {
-    this.$store.commit("initialiseStore");
-  },
   props: {
     id: {
       type: String,
@@ -207,7 +204,16 @@ export default {
   },
 
   computed: {
-    ...mapState([
+    ...mapState("personal", ["name", "lastname", "email"]),
+    ...mapState("covid", [
+      "hadCovid",
+      "testDone",
+      "testDate",
+      "covidAntigen",
+      "covidDate",
+    ]),
+    ...mapState("vaccine", ["hadVaccine", "stageLevel", "planAhead"]),
+    ...mapState("advise", [
       "meetingNumber",
       "officeWork",
       "meetingOpinion",
@@ -218,10 +224,11 @@ export default {
   methods: {
     onSubmit(values) {
       console.log(values);
+      console.log(this.collectData());
       fetch("https://covid19.devtest.ge/api/create", {
         method: "POST",
         "Content-Type": "application/json",
-        body: JSON.stringify(localStorage.getItem("store")),
+        body: JSON.stringify(this.collectData()),
       })
         .then((data) => {
           console.log("Success:", data);
@@ -229,6 +236,7 @@ export default {
         .catch((error) => {
           console.error("Error:", error);
         });
+      console.log(this.name);
       this.thanksPage();
     },
     ...mapActions(["vaccinationPage", "thanksPage"]),
@@ -249,6 +257,40 @@ export default {
     },
     updateAdviseOpinion(e) {
       this.setAdviseOpinion(e.target.value);
+    },
+    collectData() {
+      const formData = {
+        first_name: this.name,
+        last_name: this.lastname,
+        email: this.email,
+        had_covid: this.hadCovid,
+
+        non_formal_meetings: this.meetingNumber,
+        number_of_days_from_office: this.officeWork,
+
+        what_about_meetings_in_live: this.meetingOpinion,
+        tell_us_your_opinion_about_us: this.adviseOpinion,
+      };
+      if (this.hadCovid === "yes") {
+        if (this.testDone === "yes") {
+          formData["had_antibody_test"] = true;
+          formData["antibodies"] = {
+            test_date: this.testDate,
+            number: this.covidAntigen,
+          };
+        } else {
+          formData["had_antibody_test"] = false;
+          formData["covid_date"] = this.covidDate;
+        }
+      }
+      if (this.hadVaccine === "yes") {
+        formData["had_vaccine"] = true;
+        formData["vaccine_stage_level"] = this.stageLevel;
+      } else {
+        formData["had_vaccine"] = false;
+        formData["vaccine_plan"] = this.planAhead;
+      }
+      return formData;
     },
   },
 };

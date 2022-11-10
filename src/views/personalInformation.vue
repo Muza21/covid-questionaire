@@ -79,8 +79,8 @@ export default {
     };
   },
   beforeMount() {
-    this.$store.commit("initialiseStore");
-    console.log(this.$store.state.name);
+    // this.$store.commit("initialiseStore");
+    console.log(this.name);
   },
   props: {
     id: {
@@ -94,7 +94,7 @@ export default {
     ErrorMessage,
   },
   computed: {
-    ...mapState(["name", "lastname", "email"]),
+    ...mapState("personal", ["name", "lastname", "email"]),
   },
 
   methods: {
