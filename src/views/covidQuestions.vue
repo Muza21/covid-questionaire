@@ -179,8 +179,7 @@ export default {
   },
 
   methods: {
-    onSubmit(values) {
-      console.log(values);
+    onSubmit() {
       this.vaccinationPage();
     },
     ...mapActions(["personalInformationPage", "vaccinationPage"]),

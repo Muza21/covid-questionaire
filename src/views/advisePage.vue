@@ -222,9 +222,7 @@ export default {
   },
 
   methods: {
-    onSubmit(values) {
-      console.log(values);
-      console.log(this.collectData());
+    onSubmit() {
       fetch("https://covid19.devtest.ge/api/create", {
         method: "POST",
         "Content-Type": "application/json",
@@ -236,7 +234,6 @@ export default {
         .catch((error) => {
           console.error("Error:", error);
         });
-      console.log(this.name);
       this.thanksPage();
     },
     ...mapActions(["vaccinationPage", "thanksPage"]),

@@ -175,8 +175,7 @@ export default {
   },
 
   methods: {
-    onSubmit(values) {
-      console.log(values);
+    onSubmit() {
       this.advisePage();
     },
     ...mapActions(["covidQuestionsPage", "advisePage"]),

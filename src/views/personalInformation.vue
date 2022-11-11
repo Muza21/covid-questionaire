@@ -78,10 +78,7 @@ export default {
       pageNum: this.id,
     };
   },
-  beforeMount() {
-    // this.$store.commit("initialiseStore");
-    console.log(this.name);
-  },
+
   props: {
     id: {
       type: String,
@@ -98,8 +95,7 @@ export default {
   },
 
   methods: {
-    onSubmit(values) {
-      console.log(values);
+    onSubmit() {
       this.covidQuestionsPage();
     },
     ...mapActions(["covidQuestionsPage"]),
