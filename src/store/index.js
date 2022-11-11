@@ -16,11 +16,7 @@ const store = createStore({
   },
 
   actions: rootActions,
-  mutation: rootMutations,
-  getters: {
-    getMeetingOpinion(state) {
-      return state.officeWork;
-    },
-  },
+  mutations: rootMutations,
 });
+
 export default store;

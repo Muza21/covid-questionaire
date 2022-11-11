@@ -28,8 +28,8 @@
                 <Field
                   type="radio"
                   name="office"
-                  @input="updateMettingNumber"
-                  value="1"
+                  @input="updateMeetingNumber"
+                  value="twice_a_week"
                   rules="required"
                 />
                 <label>კვირაში ორჯერ</label>
@@ -38,8 +38,8 @@
                 <Field
                   type="radio"
                   name="office"
-                  @input="updateMettingNumber"
-                  value="2"
+                  @input="updateMeetingNumber"
+                  value="once_a_week"
                 />
                 <label>კვირაში ერთხელი</label>
               </div>
@@ -47,8 +47,8 @@
                 <Field
                   type="radio"
                   name="office"
-                  @input="updateMettingNumber"
-                  value="3"
+                  @input="updateMeetingNumber"
+                  value="once_in_two_weeks"
                 />
                 <label>ორ კვირაში ერთხელი</label>
               </div>
@@ -57,8 +57,8 @@
                 <Field
                   type="radio"
                   name="office"
-                  @input="updateMettingNumber"
-                  value="4"
+                  @input="updateMeetingNumber"
+                  value="once_a_month"
                 />
                 <label>თვეში ერთხელი</label>
               </div>
@@ -103,7 +103,7 @@
                   type="radio"
                   name="week"
                   @input="updateOfficeWork"
-                  value="03"
+                  value="3"
                 />
                 <label>3</label>
               </div>
@@ -137,6 +137,7 @@
                 as="textarea"
                 name="meetingOpinion"
                 class="border-2 border-gray-800 p-4 w-[600px] h-44 bg-gray-200"
+                :value="meetingOpinion"
                 @input="updateMeetingOpinion"
               />
             </div>
@@ -151,6 +152,7 @@
                 as="textarea"
                 name="adviseOpinion"
                 class="border-2 border-gray-800 p-4 w-[600px] h-44 bg-gray-200"
+                :value="adviseOpinion"
                 @input="updateAdviseOpinion"
               />
             </div>
@@ -179,7 +181,7 @@
 </template>
 
 <script>
-import { mapActions, mapState } from "vuex";
+import { mapActions, mapMutations, mapState } from "vuex";
 import { Form as ValidationForm, Field, ErrorMessage } from "vee-validate";
 
 export default {
@@ -202,8 +204,17 @@ export default {
   },
 
   computed: {
-    ...mapState([
-      "mettingNumber",
+    ...mapState("personal", ["name", "lastname", "email"]),
+    ...mapState("covid", [
+      "hadCovid",
+      "testDone",
+      "testDate",
+      "covidAntigen",
+      "covidDate",
+    ]),
+    ...mapState("vaccine", ["hadVaccine", "stageLevel", "planAhead"]),
+    ...mapState("advise", [
+      "meetingNumber",
       "officeWork",
       "meetingOpinion",
       "adviseOpinion",
@@ -211,22 +222,72 @@ export default {
   },
 
   methods: {
-    onSubmit(values) {
-      console.log(values);
+    onSubmit() {
+      fetch("https://covid19.devtest.ge/api/create", {
+        method: "POST",
+        "Content-Type": "application/json",
+        body: JSON.stringify(this.collectData()),
+      })
+        .then((data) => {
+          console.log("Success:", data);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
       this.thanksPage();
     },
     ...mapActions(["vaccinationPage", "thanksPage"]),
-    updateMettingNumber(e) {
-      this.$store.state.mettingNumber = e.target.value;
+    ...mapMutations("advise", [
+      "setMeetingNumber",
+      "setOfficeWork",
+      "setMeetingOpinion",
+      "setAdviseOpinion",
+    ]),
+    updateMeetingNumber(e) {
+      this.setMeetingNumber(e.target.value);
     },
     updateOfficeWork(e) {
-      this.$store.state.officeWork = e.target.value;
+      this.setOfficeWork(e.target.value);
     },
     updateMeetingOpinion(e) {
-      this.$store.state.meetingOpinion = e.target.value;
+      this.setMeetingOpinion(e.target.value);
     },
     updateAdviseOpinion(e) {
-      this.$store.state.adviseOpinion = e.target.value;
+      this.setAdviseOpinion(e.target.value);
+    },
+    collectData() {
+      const formData = {
+        first_name: this.name,
+        last_name: this.lastname,
+        email: this.email,
+        had_covid: this.hadCovid,
+
+        non_formal_meetings: this.meetingNumber,
+        number_of_days_from_office: this.officeWork,
+
+        what_about_meetings_in_live: this.meetingOpinion,
+        tell_us_your_opinion_about_us: this.adviseOpinion,
+      };
+      if (this.hadCovid === "yes") {
+        if (this.testDone === "yes") {
+          formData["had_antibody_test"] = true;
+          formData["antibodies"] = {
+            test_date: this.testDate,
+            number: this.covidAntigen,
+          };
+        } else {
+          formData["had_antibody_test"] = false;
+          formData["covid_date"] = this.covidDate;
+        }
+      }
+      if (this.hadVaccine === "yes") {
+        formData["had_vaccine"] = true;
+        formData["vaccine_stage_level"] = this.stageLevel;
+      } else {
+        formData["had_vaccine"] = false;
+        formData["vaccine_plan"] = this.planAhead;
+      }
+      return formData;
     },
   },
 };

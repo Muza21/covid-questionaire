@@ -1,3 +1,5 @@
+import vaccineMutations from "@/store/modules/vaccination-page/mutations.js";
+
 export default {
   namespaced: true,
   state() {
@@ -7,4 +9,5 @@ export default {
       planAhead: "",
     };
   },
+  mutations: vaccineMutations,
 };

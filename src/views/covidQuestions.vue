@@ -12,31 +12,34 @@
             <div class="ml-5">
               <div class="mt-2">
                 <Field
-                  type="radio"
                   name="covid"
+                  type="radio"
                   value="yes"
                   @input="updateHadCovid"
-                  rules="required"
+                  :checked="hadCovid === 'yes'"
                 />
+
                 <label>კი</label>
               </div>
 
               <div class="mt-2">
                 <Field
-                  type="radio"
                   name="covid"
-                  @input="updateHadCovid"
+                  type="radio"
                   value="no"
+                  @input="updateHadCovid"
+                  :checked="hadCovid === 'no'"
                 />
                 <label>არა</label>
               </div>
 
               <div class="my-2">
                 <Field
-                  type="radio"
                   name="covid"
-                  @input="updateHadCovid"
+                  type="radio"
                   value="now"
+                  @input="updateHadCovid"
+                  :checked="hadCovid === 'now'"
                 />
                 <label>ახლა მაქვს</label>
               </div>
@@ -51,20 +54,21 @@
               <div class="ml-5 my-2">
                 <div class="mb-2">
                   <Field
-                    type="radio"
                     name="test"
+                    type="radio"
                     value="yes"
                     @input="updateTestDone"
-                    rules="required"
+                    :checked="testDone === 'yes'"
                   />
                   <label>კი</label>
                 </div>
                 <div class="my-2">
                   <Field
-                    type="radio"
                     name="test"
-                    @input="updateTestDone"
+                    type="radio"
                     value="no"
+                    @input="updateTestDone"
+                    :checked="testDone === 'no'"
                   />
                   <label>არა</label>
                 </div>
@@ -84,7 +88,7 @@
                   class="border-2 border-gray-800 py-3 px-4 w-[500px] bg-gray-200"
                   placeholder="რიცხვი"
                   @input="updateTestDate"
-                  value=""
+                  :value="testDate"
                   rules="date_format"
                 />
                 <ErrorMessage class="ml-4 text-orange-600" name="testDate" />
@@ -96,7 +100,7 @@
                   class="border-2 border-gray-800 py-3 px-4 w-[500px] bg-gray-200"
                   placeholder="ანტისხეულების რაოდენობა"
                   @input="updateCovidAntigen"
-                  value=""
+                  :value="covidAntigen"
                   rules="antigen_number"
                 />
                 <ErrorMessage
@@ -117,7 +121,7 @@
                   class="border-2 border-gray-800 py-3 px-4 w-[500px] bg-gray-200"
                   @input="updateCovidDate"
                   placeholder="დდ/თთ/წწ"
-                  value=""
+                  :value="covidDate"
                   rules="required|date_format"
                 />
                 <ErrorMessage class="ml-4 text-orange-600" name="covidDate" />
@@ -142,7 +146,7 @@
 </template>
 
 <script>
-import { mapActions, mapState } from "vuex";
+import { mapActions, mapMutations, mapState } from "vuex";
 import { Form as ValidationForm, Field, ErrorMessage } from "vee-validate";
 
 export default {
@@ -165,7 +169,7 @@ export default {
   },
 
   computed: {
-    ...mapState([
+    ...mapState("covid", [
       "hadCovid",
       "testDone",
       "testDate",
@@ -175,26 +179,43 @@ export default {
   },
 
   methods: {
-    onSubmit(values) {
-      console.log(values);
+    onSubmit() {
       this.vaccinationPage();
     },
     ...mapActions(["personalInformationPage", "vaccinationPage"]),
-
+    ...mapMutations("covid", [
+      "setHadCovid",
+      "setTestDone",
+      "setTestDate",
+      "setCovidAntigen",
+      "setCovidDate",
+    ]),
     updateHadCovid(e) {
-      this.$store.state.hadCovid = e.target.value;
+      this.setHadCovid(e.target.value);
+      if (this.hadCovid !== "yes") {
+        this.setTestDone("");
+        this.setTestDate("");
+        this.setCovidAntigen("");
+        this.setCovidDate("");
+      }
     },
     updateTestDone(e) {
-      this.$store.state.testDone = e.target.value;
+      this.setTestDone(e.target.value);
+      if (this.testDone === "yes") {
+        this.setCovidDate("");
+      } else if (this.testDone === "no") {
+        this.setTestDate("");
+        this.setCovidAntigen("");
+      }
     },
     updateTestDate(e) {
-      this.$store.state.testDate = e.target.value;
+      this.setTestDate(e.target.value);
     },
     updateCovidAntigen(e) {
-      this.$store.state.covidAntigen = e.target.value;
+      this.setCovidAntigen(e.target.value);
     },
     updateCovidDate(e) {
-      this.$store.state.covidDate = e.target.value;
+      this.setCovidDate(e.target.value);
     },
   },
 };
