@@ -166,7 +166,7 @@
           </div>
         </div>
         <div>
-          <img src="src/assets/bike2 2.png" alt="bike" />
+          <img class="h-[800px]" src="src/assets/bike2 2.png" alt="bike" />
         </div>
       </div>
 

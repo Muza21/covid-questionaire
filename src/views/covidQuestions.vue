@@ -4,7 +4,7 @@
       <navigation-bar :id="pageNum"></navigation-bar>
 
       <div class="text-xl flex justify-between">
-        <div class="mt-8">
+        <div class="mt-8 w-2/5">
           <div>
             <label class="font-bold" for="covid"
               >გადატანილი გაქვს თუ არა Covid-19?*</label
@@ -130,7 +130,11 @@
           </div>
         </div>
         <div>
-          <img src="src/assets/vaccinate2.png" alt="vaccinate" />
+          <img
+            class="h-[800px]"
+            src="src/assets/vaccinate2.png"
+            alt="vaccinate"
+          />
         </div>
       </div>
       <div class="flex justify-between w-[130px] m-auto">

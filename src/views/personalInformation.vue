@@ -55,7 +55,11 @@
           </div>
         </div>
         <div>
-          <img src="src/assets/scan2.png" alt="personal information" />
+          <img
+            class="h-[800px]"
+            src="src/assets/scan2.png"
+            alt="personal information"
+          />
         </div>
       </div>
       <div class="flex justify-between w-[130px] m-auto">

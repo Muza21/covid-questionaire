@@ -133,8 +133,8 @@
             </div>
           </div>
         </div>
-        <div>
-          <img src="src/assets/doctor2.png" alt="doctor" />
+        <div class="min-w-[815px]">
+          <img class="h-[800px]" src="src/assets/doctor2.png" alt="doctor" />
         </div>
       </div>
       <div class="flex justify-between w-[130px] m-auto">
