@@ -161,9 +161,10 @@
           <router-link :to="{ name: 'personalInformation' }">
             <img src="src/assets/back.svg" alt="back" />
           </router-link>
-          <button>
+          <button v-if="checkForValid()">
             <img src="src/assets/next.svg" alt="next" />
           </button>
+          <img v-else src="src/assets/next gray.svg" alt="next-gray" />
         </div>
       </ValidationForm>
     </div>
@@ -217,6 +218,22 @@ export default {
       "setCovidAntigen",
       "setCovidDate",
     ]),
+    checkForValid() {
+      if (this.hadCovid === "no" || this.hadCovid === "now") {
+        return true;
+      } else if (this.hadCovid === "yes") {
+        if (this.testDone === "yes") {
+          if (this.testDate.length != 0 && this.covidAntigen != 0) {
+            return true;
+          }
+        } else if (this.testDone === "no") {
+          if (this.covidDate.length != 0) {
+            return true;
+          }
+        }
+      }
+      return false;
+    },
     updateHadCovid(e) {
       this.setHadCovid(e.target.value);
       if (this.hadCovid !== "yes") {

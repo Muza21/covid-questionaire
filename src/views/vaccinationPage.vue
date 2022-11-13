@@ -141,7 +141,7 @@
               </div>
               <div v-if="planAhead === '2'" class="mt-10 ml-12">
                 <a class="text-cyan-600" href="https://booking.moh.gov.ge/"
-                  >https://booking.moh.gov.ge/</a
+                  >&#128073; https://booking.moh.gov.ge/</a
                 >
               </div>
               <div v-else-if="planAhead === '3'" class="mt-10 ml-12 w-[490px]">
@@ -150,7 +150,7 @@
                   ვაქცინის გაკეთება.
                 </p>
                 <br />
-                <p>რეგისტრაციის ბმული</p>
+                <p>&#128073; რეგისტრაციის ბმული</p>
                 <a class="text-cyan-600" href="https://booking.moh.gov.ge/"
                   >https://booking.moh.gov.ge/</a
                 >
@@ -165,7 +165,10 @@
           <router-link :to="{ name: 'covidQuestions' }">
             <img src="src/assets/back.svg" alt="back" />
           </router-link>
-          <button><img src="src/assets/next.svg" alt="next" /></button>
+          <button v-if="checkForValid()">
+            <img src="src/assets/next.svg" alt="next" />
+          </button>
+          <img v-else src="src/assets/next gray.svg" alt="next-gray" />
         </div>
       </ValidationForm>
     </div>
@@ -211,6 +214,14 @@ export default {
       "setStageLevel",
       "setPlanAhead",
     ]),
+    checkForValid() {
+      if (this.hadVaccine === "yes" && this.stageLevel.length != 0) {
+        return true;
+      } else if (this.hadVaccine === "no" && this.planAhead.length != 0) {
+        return true;
+      }
+      return false;
+    },
     updateHadVaccine(e) {
       this.setHadVaccine(e.target.value);
     },
