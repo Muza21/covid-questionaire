@@ -1,19 +1,19 @@
 <template>
-  <div class="-mt-40">
-    <div class="h-screen flex flex-col justify-center items-center">
-      <Transition>
+  <div class="page w-full">
+    <div class="-mt-40">
+      <div class="h-screen flex flex-col justify-center items-center">
         <img
           class="absolute z-30"
           id="logo"
           src="src/assets/redberryLogo.svg"
           alt="logo"
         />
-      </Transition>
-      <div class="bg-gray-200 h-[400px] w-[500px] z-10"></div>
-      <div class="text-5xl text-center text-gray-800 font-bold z-0">
-        <router-link :to="{ name: 'personalInformation' }">
-          <h1 id="begin">კითხვარის<br />დაწყება</h1>
-        </router-link>
+        <div class="bg-gray-200 h-[400px] w-[500px] z-10"></div>
+        <div class="text-5xl text-center text-gray-800 font-bold z-0">
+          <router-link :to="{ name: 'personalInformation' }">
+            <h1 id="begin">კითხვარის<br />დაწყება</h1>
+          </router-link>
+        </div>
       </div>
     </div>
   </div>
@@ -23,7 +23,7 @@
 export default {};
 </script>
 
-<style>
+<style scoped>
 #logo {
   margin-left: auto;
   margin-right: auto;
@@ -37,9 +37,7 @@ export default {};
   animation: text-appear 0.3s ease alternate forwards;
   animation-delay: 1s;
 }
-.v-leave-to {
-  transform: translateX(300px) 1s;
-}
+
 @keyframes text-appear {
   0% {
   }
