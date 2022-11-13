@@ -152,7 +152,7 @@
 <script>
 import { mapActions, mapMutations, mapState } from "vuex";
 import { Form as ValidationForm, Field, ErrorMessage } from "vee-validate";
-import CovidQuestionsAnimation from "@/src/components/CovidQuestionsAnimation.vue";
+import CovidQuestionsAnimation from "@/components/CovidQuestionsAnimation.vue";
 
 export default {
   data() {

@@ -167,7 +167,7 @@
             </div>
           </div>
           <div class="flex mt-8">
-            <img
+            <!-- <img
               class="h-[800px] z-10"
               src="src/assets/bike2 2.png"
               alt="bike"
@@ -176,7 +176,8 @@
               class="mt-20 ml-32 absolute"
               src="src/assets/red_heart.png"
               alt="rectangle"
-            />
+            /> -->
+            <advise-page-animation></advise-page-animation>
           </div>
         </div>
 
@@ -194,6 +195,7 @@
 <script>
 import { mapActions, mapMutations, mapState } from "vuex";
 import { Form as ValidationForm, Field, ErrorMessage } from "vee-validate";
+import AdvisePageAnimation from "@/components/AdvisePageAnimation.vue";
 
 export default {
   data() {
@@ -212,6 +214,7 @@ export default {
     Field,
     ValidationForm,
     ErrorMessage,
+    AdvisePageAnimation,
   },
 
   computed: {

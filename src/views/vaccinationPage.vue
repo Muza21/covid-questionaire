@@ -139,7 +139,7 @@
             </div>
           </div>
           <div class="min-w-[815px] flex mt-8">
-            <img
+            <!-- <img
               class="h-[800px] z-10"
               src="src/assets/doctor2.png"
               alt="doctor"
@@ -148,7 +148,8 @@
               class="-mt-4 ml-12 absolute"
               src="src/assets/yellow_star.png"
               alt="rectangle"
-            />
+            /> -->
+            <vaccination-page-animation></vaccination-page-animation>
           </div>
         </div>
         <div class="flex justify-between w-[130px] m-auto">
@@ -165,6 +166,7 @@
 <script>
 import { mapActions, mapMutations, mapState } from "vuex";
 import { Form as ValidationForm, Field, ErrorMessage } from "vee-validate";
+import VaccinationPageAnimation from "@/components/VaccinationPageAnimation.vue";
 
 export default {
   data() {
@@ -183,6 +185,7 @@ export default {
     Field,
     ValidationForm,
     ErrorMessage,
+    VaccinationPageAnimation,
   },
 
   computed: {

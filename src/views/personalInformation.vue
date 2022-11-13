@@ -79,7 +79,7 @@
 <script>
 import { mapActions, mapMutations, mapState } from "vuex";
 import { Form as ValidationForm, Field, ErrorMessage } from "vee-validate";
-import RectangleAnimation from "@/src/components/RectangleAnimation.vue";
+import RectangleAnimation from "@/components/RectangleAnimation.vue";
 export default {
   data() {
     return {
