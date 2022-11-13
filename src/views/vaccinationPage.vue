@@ -11,24 +11,28 @@
               <div class="ml-5">
                 <div class="mt-2">
                   <Field
+                    class="w-[23px] h-[23px] accent-[#232323]"
                     type="radio"
                     name="vaccine"
                     value="yes"
                     @input="updateHadVaccine"
                     rules="required"
                   />
-                  <label>კი</label>
+                  <label class="absolute ml-4 -mt-[3px]">კი</label>
                 </div>
                 <div class="my-2">
                   <Field
+                    class="w-[23px] h-[23px] accent-[#232323]"
                     type="radio"
                     name="vaccine"
                     @input="updateHadVaccine"
                     value="no"
                   />
-                  <label>არა</label>
+                  <label class="absolute ml-4 -mt-[3px]">არა</label>
                 </div>
-                <ErrorMessage class="ml-4 text-orange-600" name="vaccine" />
+                <div>
+                  <ErrorMessage class="ml-4 text-orange-600" name="vaccine" />
+                </div>
               </div>
             </div>
 
@@ -40,38 +44,46 @@
                 <div class="ml-5">
                   <div class="mt-2">
                     <Field
+                      class="w-[23px] h-[23px] accent-[#232323]"
                       type="radio"
                       name="stage"
                       @input="updateStageLevel"
                       value="1"
                       rules="required"
                     />
-                    <label>პირველი დოზა და დარეგისტრირებული ვარ მეორეზე</label>
+                    <label class="absolute ml-4 -mt-[3px]"
+                      >პირველი დოზა და დარეგისტრირებული ვარ მეორეზე</label
+                    >
                   </div>
                   <div class="mt-2">
                     <Field
+                      class="w-[23px] h-[23px] accent-[#232323]"
                       type="radio"
                       name="stage"
                       @input="updateStageLevel"
                       value="2"
                     />
-                    <label>სრულად აცრილი ვარ</label>
+                    <label class="absolute ml-4 -mt-[3px]"
+                      >სრულად აცრილი ვარ</label
+                    >
                   </div>
                   <div class="my-2">
                     <Field
+                      class="w-[23px] h-[23px] accent-[#232323]"
                       type="radio"
                       name="stage"
                       @input="updateStageLevel"
                       value="3"
                     />
-                    <label
+                    <label class="absolute ml-4 -mt-[3px]"
                       >პირველი დოზა და არ დავრეგისტრირებულვარ მეორეზე</label
                     >
                   </div>
-                  <ErrorMessage class="ml-4 text-orange-600" name="stage" />
+                  <div>
+                    <ErrorMessage class="ml-4 text-orange-600" name="stage" />
+                  </div>
                 </div>
               </div>
-              <!-- if the last option is selected -->
               <div v-if="stageLevel === '3'" class="mt-10 ml-12">
                 <p>
                   რომ არ გადადო,<br />
@@ -89,42 +101,49 @@
                 <div class="ml-5">
                   <div class="mt-2">
                     <Field
+                      class="w-[23px] h-[23px] accent-[#232323]"
                       type="radio"
                       name="plan"
                       value="1"
                       @input="updatePlanAhead"
                       rules="required"
                     />
-                    <label>დარეგისტრირებული ვარ და ველოდები რიცხვს</label>
+                    <label class="absolute ml-4 -mt-[3px]"
+                      >დარეგისტრირებული ვარ და ველოდები რიცხვს</label
+                    >
                   </div>
                   <div class="mt-2">
                     <Field
+                      class="w-[23px] h-[23px] accent-[#232323]"
                       type="radio"
                       name="plan"
                       @input="updatePlanAhead"
                       value="2"
                     />
-                    <label>არ ვგეგმავ</label>
+                    <label class="absolute ml-4 -mt-[3px]">არ ვგეგმავ</label>
                   </div>
                   <div class="my-2">
                     <Field
+                      class="w-[23px] h-[23px] accent-[#232323]"
                       type="radio"
                       name="plan"
                       @input="updatePlanAhead"
                       value="3"
                     />
-                    <label>გადატანილი მაქვს და ვგეგმავ აცრას</label>
+                    <label class="absolute ml-4 -mt-[3px]"
+                      >გადატანილი მაქვს და ვგეგმავ აცრას</label
+                    >
                   </div>
-                  <ErrorMessage class="ml-4 text-orange-600" name="plan" />
+                  <div>
+                    <ErrorMessage class="ml-4 text-orange-600" name="plan" />
+                  </div>
                 </div>
               </div>
-              <!-- if second option is selected -->
               <div v-if="planAhead === '2'" class="mt-10 ml-12">
                 <a class="text-cyan-600" href="https://booking.moh.gov.ge/"
                   >https://booking.moh.gov.ge/</a
                 >
               </div>
-              <!-- if the last option is selected -->
               <div v-else-if="planAhead === '3'" class="mt-10 ml-12 w-[490px]">
                 <p>
                   ახალი პროტოკოლით კოვიდის გადატანიდან 1 თვის შემდეგ შეგიძლიათ
@@ -139,16 +158,6 @@
             </div>
           </div>
           <div class="min-w-[815px] flex mt-8">
-            <!-- <img
-              class="h-[800px] z-10"
-              src="src/assets/doctor2.png"
-              alt="doctor"
-            />
-            <img
-              class="-mt-4 ml-12 absolute"
-              src="src/assets/yellow_star.png"
-              alt="rectangle"
-            /> -->
             <vaccination-page-animation></vaccination-page-animation>
           </div>
         </div>

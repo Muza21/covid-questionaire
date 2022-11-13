@@ -27,43 +27,75 @@
               <div class="ml-5">
                 <div class="mt-2">
                   <Field
+                    class="transition-all duration-75 ease-in-out w-[23px] h-[23px] accent-[#232323]"
+                    v-motion
+                    :initial="{
+                      opacity: 0,
+                      y: -400,
+                    }"
+                    :enter="{ opacity: 1, y: 0 }"
                     type="radio"
                     name="office"
                     @input="updateMeetingNumber"
                     value="twice_a_week"
                     rules="required"
                   />
-                  <label>კვირაში ორჯერ</label>
+                  <label class="absolute ml-4 -mt-[3px]">კვირაში ორჯერ</label>
                 </div>
                 <div class="mt-2">
                   <Field
+                    class="transition-all duration-75 ease-in-out w-[23px] h-[23px] accent-[#232323]"
+                    v-motion
+                    :initial="{
+                      opacity: 0,
+                      y: -400,
+                    }"
+                    :enter="{ opacity: 1, y: 0 }"
                     type="radio"
                     name="office"
                     @input="updateMeetingNumber"
                     value="once_a_week"
                   />
-                  <label>კვირაში ერთხელი</label>
+                  <label class="absolute ml-4 -mt-[3px]">კვირაში ერთხელი</label>
                 </div>
                 <div class="mt-2">
                   <Field
+                    class="transition-all duration-75 ease-in-out w-[23px] h-[23px] accent-[#232323]"
+                    v-motion
+                    :initial="{
+                      opacity: 0,
+                      y: -400,
+                    }"
+                    :enter="{ opacity: 1, y: 0 }"
                     type="radio"
                     name="office"
                     @input="updateMeetingNumber"
                     value="once_in_two_weeks"
                   />
-                  <label>ორ კვირაში ერთხელი</label>
+                  <label class="absolute ml-4 -mt-[3px]"
+                    >ორ კვირაში ერთხელი</label
+                  >
                 </div>
 
                 <div class="my-2">
                   <Field
+                    class="transition-all duration-75 ease-in-out w-[23px] h-[23px] accent-[#232323]"
+                    v-motion
+                    :initial="{
+                      opacity: 0,
+                      y: -400,
+                    }"
+                    :enter="{ opacity: 1, y: 0 }"
                     type="radio"
                     name="office"
                     @input="updateMeetingNumber"
                     value="once_a_month"
                   />
-                  <label>თვეში ერთხელი</label>
+                  <label class="absolute ml-4 -mt-[3px]">თვეში ერთხელი</label>
                 </div>
-                <ErrorMessage class="ml-4 text-orange-600" name="office" />
+                <div>
+                  <ErrorMessage class="ml-4 text-orange-600" name="office" />
+                </div>
               </div>
             </div>
             <div class="mt-8">
@@ -73,60 +105,68 @@
               <div class="ml-5">
                 <div class="mt-2">
                   <Field
+                    class="w-[23px] h-[23px] accent-[#232323]"
                     type="radio"
                     name="week"
                     @input="updateOfficeWork"
                     value="0"
                     rules="required"
                   />
-                  <label>0</label>
+                  <label class="absolute ml-4 -mt-[3px]">0</label>
                 </div>
                 <div class="mt-2">
                   <Field
+                    class="w-[23px] h-[23px] accent-[#232323]"
                     type="radio"
                     name="week"
                     @input="updateOfficeWork"
                     value="1"
                   />
-                  <label>1</label>
+                  <label class="absolute ml-4 -mt-[3px]">1</label>
                 </div>
                 <div class="mt-2">
                   <Field
+                    class="w-[23px] h-[23px] accent-[#232323]"
                     type="radio"
                     name="week"
                     @input="updateOfficeWork"
                     value="2"
                   />
-                  <label>2</label>
+                  <label class="absolute ml-4 -mt-[3px]">2</label>
                 </div>
                 <div class="mt-2">
                   <Field
+                    class="w-[23px] h-[23px] accent-[#232323]"
                     type="radio"
                     name="week"
                     @input="updateOfficeWork"
                     value="3"
                   />
-                  <label>3</label>
+                  <label class="absolute ml-4 -mt-[3px]">3</label>
                 </div>
                 <div class="mt-2">
                   <Field
+                    class="w-[23px] h-[23px] accent-[#232323]"
                     type="radio"
                     name="week"
                     @input="updateOfficeWork"
                     value="4"
                   />
-                  <label>4</label>
+                  <label class="absolute ml-4 -mt-[3px]">4</label>
                 </div>
                 <div class="mt-2">
                   <Field
+                    class="w-[23px] h-[23px] accent-[#232323]"
                     type="radio"
                     name="week"
                     @input="updateOfficeWork"
                     value="5"
                   />
-                  <label>5</label>
+                  <label class="absolute ml-4 -mt-[3px]">5</label>
                 </div>
-                <ErrorMessage class="ml-4 text-orange-600" name="week" />
+                <div>
+                  <ErrorMessage class="ml-4 text-orange-600" name="week" />
+                </div>
               </div>
             </div>
             <div class="mt-8">
@@ -167,16 +207,6 @@
             </div>
           </div>
           <div class="flex mt-8">
-            <!-- <img
-              class="h-[800px] z-10"
-              src="src/assets/bike2 2.png"
-              alt="bike"
-            />
-            <img
-              class="mt-20 ml-32 absolute"
-              src="src/assets/red_heart.png"
-              alt="rectangle"
-            /> -->
             <advise-page-animation></advise-page-animation>
           </div>
         </div>

@@ -13,6 +13,7 @@
               <div class="ml-5">
                 <div class="mt-2">
                   <Field
+                    class="w-[23px] h-[23px] accent-[#232323]"
                     name="covid"
                     type="radio"
                     value="yes"
@@ -21,31 +22,35 @@
                     rules="required"
                   />
 
-                  <label>კი</label>
+                  <label class="absolute ml-4 -mt-[3px]">კი</label>
                 </div>
 
                 <div class="mt-2">
                   <Field
+                    class="w-[23px] h-[23px] accent-[#232323]"
                     name="covid"
                     type="radio"
                     value="no"
                     @input="updateHadCovid"
                     :checked="hadCovid === 'no'"
                   />
-                  <label>არა</label>
+                  <label class="absolute ml-4 -mt-[3px]">არა</label>
                 </div>
 
                 <div class="my-2">
                   <Field
+                    class="w-[23px] h-[23px] accent-[#232323]"
                     name="covid"
                     type="radio"
                     value="now"
                     @input="updateHadCovid"
                     :checked="hadCovid === 'now'"
                   />
-                  <label>ახლა მაქვს</label>
+                  <label class="absolute ml-4 -mt-[3px]">ახლა მაქვს</label>
                 </div>
-                <ErrorMessage class="ml-4 text-orange-600" name="covid" />
+                <div>
+                  <ErrorMessage class="ml-4 text-orange-600" name="covid" />
+                </div>
               </div>
             </div>
             <div v-if="hadCovid === 'yes'">
@@ -56,6 +61,7 @@
                 <div class="ml-5 my-2">
                   <div class="mb-2">
                     <Field
+                      class="w-[23px] h-[23px] accent-[#232323]"
                       name="test"
                       type="radio"
                       value="yes"
@@ -63,19 +69,22 @@
                       :checked="testDone === 'yes'"
                       rules="required"
                     />
-                    <label>კი</label>
+                    <label class="absolute ml-4 -mt-[3px]">კი</label>
                   </div>
                   <div class="my-2">
                     <Field
+                      class="w-[23px] h-[23px] accent-[#232323]"
                       name="test"
                       type="radio"
                       value="no"
                       @input="updateTestDone"
                       :checked="testDone === 'no'"
                     />
-                    <label>არა</label>
+                    <label class="absolute ml-4 -mt-[3px]">არა</label>
                   </div>
-                  <ErrorMessage class="ml-4 text-orange-600" name="test" />
+                  <div>
+                    <ErrorMessage class="ml-4 text-orange-600" name="test" />
+                  </div>
                 </div>
               </div>
 
@@ -94,7 +103,12 @@
                     :value="testDate"
                     rules="date_format"
                   />
-                  <ErrorMessage class="ml-4 text-orange-600" name="testDate" />
+                  <div>
+                    <ErrorMessage
+                      class="ml-4 text-orange-600"
+                      name="testDate"
+                    />
+                  </div>
                 </div>
                 <div class="ml-5 mt-5">
                   <Field
@@ -106,10 +120,12 @@
                     :value="covidAntigen"
                     rules="antigen_number"
                   />
-                  <ErrorMessage
-                    class="ml-4 text-orange-600"
-                    name="covidAntigen"
-                  />
+                  <div>
+                    <ErrorMessage
+                      class="ml-4 text-orange-600"
+                      name="covidAntigen"
+                    />
+                  </div>
                 </div>
               </div>
               <div v-else-if="testDone === 'no'" class="mt-5">
@@ -127,7 +143,12 @@
                     :value="covidDate"
                     rules="required|date_format"
                   />
-                  <ErrorMessage class="ml-4 text-orange-600" name="covidDate" />
+                  <div>
+                    <ErrorMessage
+                      class="ml-4 text-orange-600"
+                      name="covidDate"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
