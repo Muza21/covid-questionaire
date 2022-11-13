@@ -15,7 +15,9 @@
                 rules="required|min:2|georgian_text"
                 @input="updateName"
               />
-              <ErrorMessage class="ml-4 text-orange-600" name="name" />
+              <div>
+                <ErrorMessage class="ml-4 text-orange-600" name="name" />
+              </div>
             </div>
           </div>
           <div class="mt-12">
@@ -29,7 +31,9 @@
                 rules="required|min:2|georgian_text"
                 @input="updateLastName"
               />
-              <ErrorMessage class="ml-4 text-orange-600" name="lastname" />
+              <div>
+                <ErrorMessage class="ml-4 text-orange-600" name="lastname" />
+              </div>
             </div>
           </div>
           <div class="mt-12">
@@ -43,7 +47,9 @@
                 rules="required|email|redberry_email"
                 @input="updateEmail"
               />
-              <ErrorMessage class="ml-4 text-orange-600" name="email" />
+              <div>
+                <ErrorMessage class="ml-4 text-orange-600" name="email" />
+              </div>
             </div>
           </div>
 
@@ -54,11 +60,16 @@
             <p>*-ით მონიშნული ველების შევსება სავალდებულოა</p>
           </div>
         </div>
-        <div>
+        <div class="flex justify-center mt-8">
           <img
-            class="h-[800px]"
+            class="h-[800px] z-10"
             src="src/assets/scan2.png"
             alt="personal information"
+          />
+          <img
+            class="mt-56 absolute"
+            src="src/assets/yellow_rectangle.png"
+            alt="rectangle"
           />
         </div>
       </div>

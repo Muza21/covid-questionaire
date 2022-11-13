@@ -165,8 +165,13 @@
             </button>
           </div>
         </div>
-        <div>
-          <img class="h-[800px]" src="src/assets/bike2 2.png" alt="bike" />
+        <div class="flex mt-8">
+          <img class="h-[800px] z-10" src="src/assets/bike2 2.png" alt="bike" />
+          <img
+            class="mt-20 ml-32 absolute"
+            src="src/assets/red_heart.png"
+            alt="rectangle"
+          />
         </div>
       </div>
 

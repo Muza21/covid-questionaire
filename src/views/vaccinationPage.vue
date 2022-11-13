@@ -133,8 +133,17 @@
             </div>
           </div>
         </div>
-        <div class="min-w-[815px]">
-          <img class="h-[800px]" src="src/assets/doctor2.png" alt="doctor" />
+        <div class="min-w-[815px] flex mt-8">
+          <img
+            class="h-[800px] z-10"
+            src="src/assets/doctor2.png"
+            alt="doctor"
+          />
+          <img
+            class="-mt-4 ml-12 absolute"
+            src="src/assets/yellow_star.png"
+            alt="rectangle"
+          />
         </div>
       </div>
       <div class="flex justify-between w-[130px] m-auto">

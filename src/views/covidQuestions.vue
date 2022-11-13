@@ -17,6 +17,7 @@
                   value="yes"
                   @input="updateHadCovid"
                   :checked="hadCovid === 'yes'"
+                  rules="required"
                 />
 
                 <label>კი</label>
@@ -59,6 +60,7 @@
                     value="yes"
                     @input="updateTestDone"
                     :checked="testDone === 'yes'"
+                    rules="required"
                   />
                   <label>კი</label>
                 </div>
@@ -129,11 +131,16 @@
             </div>
           </div>
         </div>
-        <div>
+        <div class="flex mt-8">
           <img
-            class="h-[800px]"
+            class="h-[800px] z-10"
             src="src/assets/vaccinate2.png"
             alt="vaccinate"
+          />
+          <img
+            class="mt-52 ml-14 absolute"
+            src="src/assets/red_circle.png"
+            alt="rectangle"
           />
         </div>
       </div>

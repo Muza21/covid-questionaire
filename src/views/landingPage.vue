@@ -1,12 +1,14 @@
 <template>
   <div class="-mt-40">
     <div class="h-screen flex flex-col justify-center items-center">
-      <img
-        class="absolute z-30"
-        id="logo"
-        src="src/assets/redberryLogo.svg"
-        alt="logo"
-      />
+      <Transition>
+        <img
+          class="absolute z-30"
+          id="logo"
+          src="src/assets/redberryLogo.svg"
+          alt="logo"
+        />
+      </Transition>
       <div class="bg-gray-200 h-[400px] w-[500px] z-10"></div>
       <div class="text-5xl text-center text-gray-800 font-bold z-0">
         <router-link :to="{ name: 'personalInformation' }">
@@ -34,6 +36,9 @@ export default {};
   margin-top: -200px;
   animation: text-appear 0.3s ease alternate forwards;
   animation-delay: 1s;
+}
+.v-leave-to {
+  transform: translateX(300px) 1s;
 }
 @keyframes text-appear {
   0% {
