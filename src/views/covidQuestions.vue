@@ -159,12 +159,50 @@
         </div>
         <div class="flex justify-between w-[130px] m-auto">
           <router-link :to="{ name: 'personalInformation' }">
-            <img src="/src/assets/back.svg" alt="back" />
+            <svg
+              width="18"
+              height="23"
+              viewBox="0 0 18 23"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M17 1L3 11.3158L17 21.6316"
+                stroke="#232323"
+                stroke-width="2.4"
+              />
+            </svg>
           </router-link>
           <button v-if="checkForValid()">
-            <img src="/src/assets/next.svg" alt="next" />
+            <svg
+              width="18"
+              height="23"
+              viewBox="0 0 18 23"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M1 1L15 11.3158L1 21.6316"
+                stroke="#232323"
+                stroke-width="2.4"
+              />
+            </svg>
           </button>
-          <img v-else src="/src/assets/next_gray.svg" alt="next-gray" />
+          <div v-else>
+            <svg
+              width="18"
+              height="23"
+              viewBox="0 0 18 23"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M1 1L15 11.3158L1 21.6316"
+                stroke="#8D8D8D"
+                stroke-width="2.4"
+              />
+            </svg>
+          </div>
         </div>
       </ValidationForm>
     </div>
