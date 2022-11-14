@@ -159,49 +159,13 @@
         </div>
         <div class="flex justify-between w-[130px] m-auto">
           <router-link :to="{ name: 'personalInformation' }">
-            <svg
-              width="18"
-              height="23"
-              viewBox="0 0 18 23"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M17 1L3 11.3158L17 21.6316"
-                stroke="#232323"
-                stroke-width="2.4"
-              />
-            </svg>
+            <BackArrow />
           </router-link>
           <button v-if="checkForValid()">
-            <svg
-              width="18"
-              height="23"
-              viewBox="0 0 18 23"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M1 1L15 11.3158L1 21.6316"
-                stroke="#232323"
-                stroke-width="2.4"
-              />
-            </svg>
+            <NextArrow />
           </button>
           <div v-else>
-            <svg
-              width="18"
-              height="23"
-              viewBox="0 0 18 23"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M1 1L15 11.3158L1 21.6316"
-                stroke="#8D8D8D"
-                stroke-width="2.4"
-              />
-            </svg>
+            <NextGrayArrow />
           </div>
         </div>
       </ValidationForm>
@@ -213,6 +177,9 @@
 import { mapActions, mapMutations, mapState } from "vuex";
 import { Form as ValidationForm, Field, ErrorMessage } from "vee-validate";
 import CovidQuestionsAnimation from "@/components/CovidQuestionsAnimation.vue";
+import NextGrayArrow from "@/components/NextGrayArrow.vue";
+import NextArrow from "@/components/NextArrow.vue";
+import BackArrow from "@/components/BackArrow.vue";
 
 export default {
   data() {
@@ -232,6 +199,9 @@ export default {
     ValidationForm,
     ErrorMessage,
     CovidQuestionsAnimation,
+    NextGrayArrow,
+    NextArrow,
+    BackArrow,
   },
 
   computed: {
