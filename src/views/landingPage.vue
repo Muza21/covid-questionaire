@@ -5,7 +5,7 @@
         <img
           class="absolute z-30"
           id="logo"
-          src="src/assets/redberryLogo.svg"
+          src="/src/assets/redberryLogo.svg"
           alt="logo"
         />
         <div class="bg-gray-200 h-[400px] w-[500px] z-10"></div>

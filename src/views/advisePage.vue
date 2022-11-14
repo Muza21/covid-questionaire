@@ -213,7 +213,7 @@
 
         <div class="flex justify-between w-[130px] m-auto py-32">
           <router-link :to="{ name: 'vaccinationPage' }">
-            <img src="src/assets/back.svg" alt="back" />
+            <img src="/src/assets/back.svg" alt="back" />
           </router-link>
           <div></div>
         </div>

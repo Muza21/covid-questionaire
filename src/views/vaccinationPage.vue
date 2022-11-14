@@ -163,12 +163,12 @@
         </div>
         <div class="flex justify-between w-[130px] m-auto">
           <router-link :to="{ name: 'covidQuestions' }">
-            <img src="src/assets/back.svg" alt="back" />
+            <img src="/src/assets/back.svg" alt="back" />
           </router-link>
           <button v-if="checkForValid()">
-            <img src="src/assets/next.svg" alt="next" />
+            <img src="/src/assets/next.svg" alt="next" />
           </button>
-          <img v-else src="src/assets/next gray.svg" alt="next-gray" />
+          <img v-else src="/src/assets/next_gray.svg" alt="next-gray" />
         </div>
       </ValidationForm>
     </div>

@@ -1,7 +1,7 @@
 <template>
   <img
     class="h-[800px] z-10"
-    src="src/assets/scan2.png"
+    src="/src/assets/scan2.png"
     alt="personal information"
   />
 
@@ -17,7 +17,7 @@
     }"
     :enter="{ opacity: 1, x: 0, y: 0, height: 75, width: 622 }"
     :leave="{ opacity: 0, x: 0, y: 0, height: 75, width: 622 }"
-    src="src/assets/yellow_rectangle.png"
+    src="/src/assets/yellow_rectangle.png"
     alt="rectangle"
   />
 </template>

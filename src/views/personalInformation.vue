@@ -68,7 +68,7 @@
         <div class="flex justify-between w-[130px] m-auto">
           <div></div>
           <button>
-            <img src="src/assets/next.svg" alt="next" />
+            <img src="/src/assets/next.svg" alt="next" />
           </button>
         </div>
       </ValidationForm>

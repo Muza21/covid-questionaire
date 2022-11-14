@@ -12,7 +12,7 @@
           height: 40,
         }"
         :enter="{ opacity: 1, x: -180, y: -120, height: 53, width: 53 }"
-        src="src/assets/big_white_star.png"
+        src="/src/assets/big_white_star.png"
         alt="star"
       />
       <img
@@ -26,11 +26,11 @@
           height: 30,
         }"
         :enter="{ opacity: 1, x: 160, y: 50, height: 33, width: 33 }"
-        src="src/assets/small_white_star.png"
+        src="/src/assets/small_white_star.png"
         alt="star"
       />
       <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-        <img src="src/assets/thanks.png" alt="thanks" />
+        <img src="/src/assets/thanks.png" alt="thanks" />
       </div>
     </div>
   </div>
