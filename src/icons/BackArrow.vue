@@ -9,7 +9,3 @@
     <path d="M17 1L3 11.3158L17 21.6316" stroke="#232323" stroke-width="2.4" />
   </svg>
 </template>
-
-<script>
-export default {};
-</script>
