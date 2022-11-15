@@ -68,7 +68,7 @@
         <div class="flex justify-between w-[130px] m-auto">
           <div></div>
           <button>
-            <img src="src/assets/next.svg" alt="next" />
+            <NextArrow />
           </button>
         </div>
       </ValidationForm>
@@ -80,6 +80,8 @@
 import { mapActions, mapMutations, mapState } from "vuex";
 import { Form as ValidationForm, Field, ErrorMessage } from "vee-validate";
 import RectangleAnimation from "@/components/RectangleAnimation.vue";
+import NextArrow from "@/icons/NextArrow.vue";
+
 export default {
   data() {
     return {
@@ -98,6 +100,7 @@ export default {
     ValidationForm,
     ErrorMessage,
     RectangleAnimation,
+    NextArrow,
   },
   computed: {
     ...mapState("personal", ["name", "lastname", "email"]),

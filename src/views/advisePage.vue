@@ -213,7 +213,7 @@
 
         <div class="flex justify-between w-[130px] m-auto py-32">
           <router-link :to="{ name: 'vaccinationPage' }">
-            <img src="src/assets/back.svg" alt="back" />
+            <BackArrow />
           </router-link>
           <div></div>
         </div>
@@ -226,6 +226,7 @@
 import { mapActions, mapMutations, mapState } from "vuex";
 import { Form as ValidationForm, Field, ErrorMessage } from "vee-validate";
 import AdvisePageAnimation from "@/components/AdvisePageAnimation.vue";
+import BackArrow from "@/icons/BackArrow.vue";
 
 export default {
   data() {
@@ -245,6 +246,7 @@ export default {
     ValidationForm,
     ErrorMessage,
     AdvisePageAnimation,
+    BackArrow,
   },
 
   computed: {

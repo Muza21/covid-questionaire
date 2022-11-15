@@ -163,12 +163,14 @@
         </div>
         <div class="flex justify-between w-[130px] m-auto">
           <router-link :to="{ name: 'covidQuestions' }">
-            <img src="src/assets/back.svg" alt="back" />
+            <BackArrow />
           </router-link>
           <button v-if="checkForValid()">
-            <img src="src/assets/next.svg" alt="next" />
+            <NextArrow />
           </button>
-          <img v-else src="src/assets/next gray.svg" alt="next-gray" />
+          <div v-else>
+            <NextGrayArrow />
+          </div>
         </div>
       </ValidationForm>
     </div>
@@ -179,6 +181,9 @@
 import { mapActions, mapMutations, mapState } from "vuex";
 import { Form as ValidationForm, Field, ErrorMessage } from "vee-validate";
 import VaccinationPageAnimation from "@/components/VaccinationPageAnimation.vue";
+import NextGrayArrow from "@/icons/NextGrayArrow.vue";
+import NextArrow from "@/icons/NextArrow.vue";
+import BackArrow from "@/icons/BackArrow.vue";
 
 export default {
   data() {
@@ -198,6 +203,9 @@ export default {
     ValidationForm,
     ErrorMessage,
     VaccinationPageAnimation,
+    NextGrayArrow,
+    NextArrow,
+    BackArrow,
   },
 
   computed: {

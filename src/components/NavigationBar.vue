@@ -4,7 +4,7 @@
   >
     <div class="flex my-4">
       <h1 class="text-3xl">REDBERRY</h1>
-      <img class="-mt-3" src="src/assets/logoR.svg" alt="logo" />
+      <img class="-mt-3" src="/src/assets/logoR.svg" alt="logo" />
     </div>
 
     <div class="text-gray-800 my-4">{{ id }}/4</div>
