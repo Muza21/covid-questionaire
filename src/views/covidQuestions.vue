@@ -177,9 +177,9 @@
 import { mapActions, mapMutations, mapState } from "vuex";
 import { Form as ValidationForm, Field, ErrorMessage } from "vee-validate";
 import CovidQuestionsAnimation from "@/components/CovidQuestionsAnimation.vue";
-import NextGrayArrow from "@/components/NextGrayArrow.vue";
-import NextArrow from "@/components/NextArrow.vue";
-import BackArrow from "@/components/BackArrow.vue";
+import NextGrayArrow from "@/icons/NextGrayArrow.vue";
+import NextArrow from "@/icons/NextArrow.vue";
+import BackArrow from "@/icons/BackArrow.vue";
 
 export default {
   data() {

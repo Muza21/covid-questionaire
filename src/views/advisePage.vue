@@ -226,7 +226,7 @@
 import { mapActions, mapMutations, mapState } from "vuex";
 import { Form as ValidationForm, Field, ErrorMessage } from "vee-validate";
 import AdvisePageAnimation from "@/components/AdvisePageAnimation.vue";
-import BackArrow from "@/components/BackArrow.vue";
+import BackArrow from "@/icons/BackArrow.vue";
 
 export default {
   data() {

@@ -80,7 +80,7 @@
 import { mapActions, mapMutations, mapState } from "vuex";
 import { Form as ValidationForm, Field, ErrorMessage } from "vee-validate";
 import RectangleAnimation from "@/components/RectangleAnimation.vue";
-import NextArrow from "@/components/NextArrow.vue";
+import NextArrow from "@/icons/NextArrow.vue";
 
 export default {
   data() {
