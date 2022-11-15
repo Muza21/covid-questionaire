@@ -37,7 +37,7 @@
           y: -25,
         }"
         :enter="{ opacity: 1, x: -220, y: -25 }"
-        class="absolute transition-all duration-300 ease-in-out left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+        class="absolute transition-all delay-150 duration-150 ease-in-out left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
       >
         <img src="/src/assets/thanks.png" alt="thanks" />
       </div>
