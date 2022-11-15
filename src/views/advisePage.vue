@@ -272,6 +272,7 @@ export default {
       fetch("https://covid19.devtest.ge/api/create", {
         method: "POST",
         accept: "application/json",
+        "Access-Control-Allow-Origin": "*",
 
         "Content-Type": "application/json",
         body: JSON.stringify(this.collectData()),
