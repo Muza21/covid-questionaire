@@ -273,7 +273,7 @@ export default {
         method: "POST",
         accept: "application/json",
         "Access-Control-Allow-Origin": "*",
-
+        "X-requested-with": "XMLHttpRequest",
         "Content-Type": "application/json",
         body: JSON.stringify(this.collectData()),
       })
